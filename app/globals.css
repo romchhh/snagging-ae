@@ -67,6 +67,28 @@ body {
   padding-bottom: var(--section-y);
 }
 
+/* Sample report banner — full-width photo; much taller on tablet/desktop */
+.snagging-sample-banner {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  height: clamp(280px, 45vh, 420px);
+}
+
+@media (min-width: 768px) {
+  .snagging-sample-banner {
+    min-height: 440px;
+    height: clamp(440px, 52vh, 680px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .snagging-sample-banner {
+    min-height: 520px;
+    height: clamp(520px, 62vh, 880px);
+  }
+}
+
 /* ===== NAVBAR ===== */
 /* Always visible with dark bg when transparent, solid when scrolled */
 .site-nav {
@@ -78,7 +100,7 @@ body {
 .site-nav.is-solid {
   --nav-logo: var(--ink);
   --nav-link: var(--ink-2);
-  --nav-link-hover: var(--ink);
+  --nav-link-hover: var(--brand-yellow);
 }
 
 .site-nav .nav-logo-main {

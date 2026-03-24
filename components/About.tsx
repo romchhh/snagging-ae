@@ -28,7 +28,7 @@ export default function About() {
       id="about"
       ref={ref}
       className="section-y"
-      style={{ background: 'var(--ink)', borderTop: '4px solid var(--brand-yellow)' }}
+      style={{ background: 'var(--ink)' }}
     >
       <div className="layout-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">

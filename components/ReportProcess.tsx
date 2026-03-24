@@ -71,13 +71,28 @@ export default function ReportProcess() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <ul
-              className="reveal d3"
-              style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}
+              className="reveal d3 w-full"
+              style={{
+                listStyle: 'none',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '16px',
+              }}
             >
               {['Full defect list with photos', 'Severity and priority levels', 'Repair cost estimation', 'Expert recommendations'].map((item) => (
                 <li
                   key={item}
-                  style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: 'calc(16px * var(--text-scale))', color: '#fff' }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '16px',
+                    fontSize: 'calc(16px * var(--text-scale))',
+                    color: '#fff',
+                    textAlign: 'center',
+                    width: '100%',
+                  }}
                 >
                   <span
                     aria-hidden
@@ -332,9 +347,6 @@ export default function ReportProcess() {
             height: 56px;
             border-radius: 50%;
             background: var(--ink);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin-bottom: 24px;
             position: relative;
             z-index: 1;
@@ -347,16 +359,22 @@ export default function ReportProcess() {
           }
 
           .process-badge span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             font-family: var(--font-playfair);
             font-size: calc(18px * var(--text-scale));
             font-weight: 400;
             color: #fff;
             line-height: 1;
+            font-variant-numeric: lining-nums;
             transition: color 0.3s;
           }
 
           .process-card:hover .process-badge span {
             color: var(--ink);
+            transform: translate(-50%, -50%);
           }
 
           /* Horizontal connector line between badges */

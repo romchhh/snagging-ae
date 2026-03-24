@@ -65,6 +65,7 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <div
+          className="nav-inner"
           style={{
             width: '100%',
             maxWidth: 'var(--container-max)',
@@ -80,10 +81,11 @@ export default function Navbar() {
             gap: '16px',
           }}
         >
-          {/* LOGO — 75% of header row height */}
+          {/* LOGO — 75% of header row height; centered on mobile */}
           <Link
             href="/"
             onClick={closeMenu}
+            className="nav-logo-wrap"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -146,7 +148,7 @@ export default function Navbar() {
           </ul>
 
           {/* Right side */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+          <div className="nav-right-wrap" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
             {/* Desktop CTA — transparent + white outline over hero; dark outline when bar is solid */}
             <button
               type="button"
@@ -172,7 +174,7 @@ export default function Navbar() {
               onMouseEnter={(e) => {
                 const t = e.currentTarget
                 t.style.borderColor = 'var(--brand-yellow)'
-                t.style.color = scrolled ? 'var(--ink)' : 'var(--brand-yellow)'
+                t.style.color = 'var(--brand-yellow)'
                 t.style.background = scrolled ? 'rgba(249,220,10,0.12)' : 'rgba(255,255,255,0.08)'
                 t.style.transform = 'translateY(-1px)'
               }}
@@ -187,7 +189,7 @@ export default function Navbar() {
               Book Inspection
             </button>
 
-            {/* Hamburger */}
+            {/* Hamburger — shared center so X sits exactly where the icon was */}
             <button
               type="button"
               className="nav-hamburger"
@@ -197,8 +199,8 @@ export default function Navbar() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '48px',
-                height: '48px',
+                width: '56px',
+                height: '56px',
                 flexShrink: 0,
                 border: 'none',
                 background: 'transparent',
@@ -211,30 +213,65 @@ export default function Navbar() {
               aria-controls="mobile-menu"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >
-              <span style={{ position: 'relative', display: 'block', width: '22px', height: '15px' }}>
-                <span style={{
-                  position: 'absolute', left: 0, display: 'block', width: '100%', height: '2px',
-                  background: 'currentColor', borderRadius: '2px',
-                  transition: 'all 0.3s ease',
-                  top: menuOpen ? '6px' : '0',
-                  transform: menuOpen ? 'rotate(45deg)' : 'none',
-                }} />
-                <span style={{
-                  position: 'absolute', left: 0, display: 'block', width: '100%', height: '2px',
-                  background: 'currentColor', borderRadius: '2px',
-                  top: '6px',
-                  transition: 'all 0.3s ease',
-                  opacity: menuOpen ? 0 : 1,
-                  transform: menuOpen ? 'scale(0)' : 'none',
-                }} />
-                <span style={{
-                  position: 'absolute', left: 0, display: 'block', width: '100%', height: '2px',
-                  background: 'currentColor', borderRadius: '2px',
-                  transition: 'all 0.3s ease',
-                  top: menuOpen ? '6px' : 'auto',
-                  bottom: menuOpen ? 'auto' : '0',
-                  transform: menuOpen ? 'rotate(-45deg)' : 'none',
-                }} />
+              <span
+                aria-hidden
+                style={{
+                  position: 'relative',
+                  display: 'block',
+                  width: '34px',
+                  height: '34px',
+                }}
+              >
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    width: '34px',
+                    height: '3px',
+                    marginLeft: '-17px',
+                    marginTop: '-1.5px',
+                    borderRadius: '2px',
+                    background: 'currentColor',
+                    transformOrigin: '50% 50%',
+                    transition: 'transform 0.3s ease, opacity 0.25s ease',
+                    transform: menuOpen ? 'translateY(0) rotate(45deg)' : 'translateY(-9px) rotate(0deg)',
+                  }}
+                />
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    width: '34px',
+                    height: '3px',
+                    marginLeft: '-17px',
+                    marginTop: '-1.5px',
+                    borderRadius: '2px',
+                    background: 'currentColor',
+                    transformOrigin: '50% 50%',
+                    transition: 'transform 0.3s ease, opacity 0.25s ease',
+                    opacity: menuOpen ? 0 : 1,
+                    pointerEvents: menuOpen ? 'none' : 'auto',
+                    transform: 'translateY(0) rotate(0deg)',
+                  }}
+                />
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    width: '34px',
+                    height: '3px',
+                    marginLeft: '-17px',
+                    marginTop: '-1.5px',
+                    borderRadius: '2px',
+                    background: 'currentColor',
+                    transformOrigin: '50% 50%',
+                    transition: 'transform 0.3s ease, opacity 0.25s ease',
+                    transform: menuOpen ? 'translateY(0) rotate(-45deg)' : 'translateY(9px) rotate(0deg)',
+                  }}
+                />
               </span>
             </button>
           </div>
@@ -358,6 +395,24 @@ export default function Navbar() {
       )}
 
       <style>{`
+        @media (max-width: 767px) {
+          .nav-inner {
+            display: grid !important;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            justify-content: stretch;
+            gap: 0;
+          }
+          .nav-logo-wrap {
+            grid-column: 2;
+            justify-self: center;
+            padding: 0 !important;
+          }
+          .nav-right-wrap {
+            grid-column: 3;
+            justify-self: end;
+          }
+        }
         @media (min-width: 768px) {
           .nav-desktop-list { display: flex !important; }
           .nav-cta-btn { display: inline-flex !important; }

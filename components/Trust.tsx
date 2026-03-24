@@ -24,7 +24,7 @@ export default function Trust() {
   const feats = [
     {
       icon: (
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="3"/>
           <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
           <line x1="12" y1="2" x2="12" y2="4"/>
@@ -38,7 +38,7 @@ export default function Trust() {
     },
     {
       icon: (
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
           <polyline points="14 2 14 8 20 8"/>
           <line x1="16" y1="13" x2="8" y2="13"/>
@@ -51,7 +51,7 @@ export default function Trust() {
     },
     {
       icon: (
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10"/>
           <line x1="2" y1="12" x2="22" y2="12"/>
           <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
@@ -62,7 +62,7 @@ export default function Trust() {
     },
     {
       icon: (
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
       ),
@@ -143,11 +143,11 @@ export default function Trust() {
               className="reveal d1"
               style={{
                 fontFamily: 'var(--font-playfair)',
-                fontSize: 'clamp(calc(40px * var(--text-scale)), 4vw, calc(62px * var(--text-scale)))',
+                fontSize: 'clamp(calc(44px * var(--text-scale)), 4.2vw, calc(68px * var(--text-scale)))',
                 fontWeight: 400,
                 color: 'var(--ink)',
                 lineHeight: 1.12,
-                marginBottom: '24px',
+                marginBottom: '28px',
                 letterSpacing: '-0.01em',
                 textAlign: 'center',
               }}
@@ -159,10 +159,10 @@ export default function Trust() {
             <p
               className="reveal d2"
               style={{
-                fontSize: 'calc(17px * var(--text-scale))',
+                fontSize: 'calc(19px * var(--text-scale))',
                 color: 'var(--ink-2)',
-                lineHeight: 1.9,
-                marginBottom: '20px',
+                lineHeight: 1.85,
+                marginBottom: '22px',
                 fontWeight: 300,
               }}
             >
@@ -171,44 +171,44 @@ export default function Trust() {
             <p
               className="reveal d3"
               style={{
-                fontSize: 'calc(17px * var(--text-scale))',
+                fontSize: 'calc(19px * var(--text-scale))',
                 color: 'var(--ink-2)',
-                lineHeight: 1.9,
-                marginBottom: '52px',
+                lineHeight: 1.85,
+                marginBottom: '56px',
                 fontWeight: 300,
               }}
             >
               You don&rsquo;t just receive a checklist — you <strong>understand the real condition</strong> of your property before making a decision.
             </p>
 
-            {/* FEATURE GRID */}
-            <div
-              className="grid grid-cols-2"
-              style={{ gap: '1px', background: 'var(--stone)' }}
-            >
+            {/* FEATURE GRID — same surface as page (white) */}
+            <div className="grid grid-cols-2 gap-8 lg:gap-10">
               {feats.map((f, i) => (
                 <div
                   key={f.title}
                   className={`reveal d${i + 1}`}
                   style={{
-                    background: 'var(--cream)',
-                    padding: 'clamp(18px, 4vw, 26px) clamp(14px, 3vw, 28px)',
-                    transition: 'background 0.25s',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#fff'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'var(--cream)'
+                    background: '#fff',
+                    padding: 'clamp(24px, 5vw, 36px) clamp(18px, 3.5vw, 32px)',
+                    textAlign: 'center',
                   }}
                 >
-                  <div style={{ color: 'var(--brand-yellow)', marginBottom: '18px' }}>{f.icon}</div>
                   <div
                     style={{
-                      fontSize: 'calc(14px * var(--text-scale))',
+                      color: 'var(--brand-yellow)',
+                      marginBottom: '22px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {f.icon}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 'calc(16px * var(--text-scale))',
                       fontWeight: 700,
                       color: 'var(--ink)',
-                      marginBottom: '8px',
+                      marginBottom: '10px',
                       letterSpacing: '0.02em',
                       textTransform: 'uppercase',
                       fontFamily: 'var(--font-jost)',
@@ -216,7 +216,15 @@ export default function Trust() {
                   >
                     {f.title}
                   </div>
-                  <div style={{ fontSize: 'calc(14px * var(--text-scale))', color: 'var(--muted)', lineHeight: 1.75 }}>{f.desc}</div>
+                  <div
+                    style={{
+                      fontSize: 'calc(16px * var(--text-scale))',
+                      color: 'var(--muted)',
+                      lineHeight: 1.78,
+                    }}
+                  >
+                    {f.desc}
+                  </div>
                 </div>
               ))}
             </div>

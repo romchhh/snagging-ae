@@ -56,7 +56,7 @@ export default function AdditionalAndCTA() {
   return (
     <div ref={ref}>
       {/* FULL WIDTH PHOTO BANNER */}
-      <div className="relative overflow-hidden min-h-[280px] h-[clamp(280px,45vh,420px)]">
+      <div className="snagging-sample-banner">
         <Image
           src="/snagging.png"
           alt="Property snagging inspection in the UAE"
@@ -167,7 +167,7 @@ export default function AdditionalAndCTA() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 gap-2">
             {additionalServices.map((s, i) => (
               <div
                 key={s.title}

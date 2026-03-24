@@ -28,7 +28,7 @@ export default function FAQ() {
   }, [])
 
   return (
-    <section
+     <section
       id="faq"
       ref={ref}
       className="section-y"
