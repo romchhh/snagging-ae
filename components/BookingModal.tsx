@@ -1,6 +1,12 @@
 'use client'
 import { useEffect, useLayoutEffect, useRef, useState, useCallback } from 'react'
 import { submitInspectionForm } from '@/lib/submit-inspection-form'
+import {
+  maskEmail,
+  maskPropertyType,
+  maskUAEPhone,
+  PROPERTY_TYPE_SUGGESTIONS,
+} from '@/lib/input-masks'
 import { lockBodyScroll, unlockBodyScroll } from '@/lib/scroll-lock'
 
 export default function BookingModal() {
@@ -232,7 +238,8 @@ export default function BookingModal() {
                   autoComplete="tel"
                   placeholder="+971 00 000 0000"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => setPhone(maskUAEPhone(e.target.value))}
+                  inputMode="tel"
                   required
                   style={inp}
                   onFocus={onFocus}
@@ -249,7 +256,8 @@ export default function BookingModal() {
                 autoComplete="email"
                 placeholder="your@email.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(maskEmail(e.target.value))}
+                inputMode="email"
                 required
                 style={inp}
                 onFocus={onFocus}
@@ -259,26 +267,23 @@ export default function BookingModal() {
 
             <div>
               <label style={lbl}>Property Type</label>
-              <select
+              <input
+                type="text"
                 name="propertyType"
+                list="property-types-booking"
+                autoComplete="off"
+                placeholder="e.g. Apartment (optional)"
                 value={propertyType}
-                onChange={(e) => setPropertyType(e.target.value)}
-                style={{
-                  ...inp,
-                  cursor: 'pointer',
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='rgba(255,255,255,0.35)' fill='none' stroke-width='1.5'/%3E%3C/svg%3E")`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 14px center',
-                  paddingRight: '36px',
-                }}
+                onChange={(e) => setPropertyType(maskPropertyType(e.target.value))}
+                style={inp}
                 onFocus={onFocus}
                 onBlur={onBlur}
-              >
-                <option value="" style={{ background: 'var(--ink)' }}>Select type (optional)</option>
-                {['Apartment', 'Villa', 'Townhouse', 'Penthouse', 'Hotel Apartment', 'Commercial', 'Entire Building'].map((o) => (
-                  <option key={o} style={{ background: 'var(--ink)' }}>{o}</option>
+              />
+              <datalist id="property-types-booking">
+                {PROPERTY_TYPE_SUGGESTIONS.map((o) => (
+                  <option key={o} value={o} />
                 ))}
-              </select>
+              </datalist>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', flexShrink: 0 }}>

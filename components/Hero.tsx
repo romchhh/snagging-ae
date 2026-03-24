@@ -44,7 +44,7 @@ export default function Hero() {
       </div>
 
       {/* CONTENT — mobile: raised (translate + less pt); desktop: lower */}
-      <div className="relative z-10 w-full max-md:-translate-y-[30dvh] layout-container md:translate-y-[29dvh] md:pt-60" style={{ paddingTop: '96px', paddingBottom: 'clamp(140px, 18dvh, 240px)' }}>
+      <div className="relative z-10 w-full max-md:-translate-y-[46dvh] layout-container md:translate-y-[8dvh] md:pt-44" style={{ paddingTop: '96px', paddingBottom: 'clamp(100px, 12dvh, 180px)' }}>
         <div
           ref={textRef}
           style={{
@@ -105,16 +105,25 @@ export default function Hero() {
               maxWidth: '520px',
               lineHeight: 1.8,
               fontWeight: 300,
-              marginBottom: '56px',
+              marginBottom: '32px',
             }}
           >
             Identify every defect before handover or purchase — protect your investment with certified engineering inspections.
           </p>
 
+          {/* Stats + CTAs — pulled up as one cluster */}
+          <div
+            style={{
+              marginTop: 'clamp(-28px, -4vw, -12px)',
+            }}
+          >
           {/* STATS ROW — single row on all breakpoints */}
           <div
-            className="mb-14 flex w-full max-w-[600px] flex-nowrap gap-0"
-            style={{ border: '1px solid rgba(255,255,255,0.14)' }}
+            className="flex w-full max-w-[600px] flex-nowrap gap-0"
+            style={{
+              border: '1px solid rgba(255,255,255,0.14)',
+              marginBottom: 'clamp(22px, 4vw, 40px)',
+            }}
           >
             {[
               { num: '75K+', label: 'Inspections' },
@@ -124,7 +133,7 @@ export default function Hero() {
             ].map((s, i) => (
               <div
                 key={s.num}
-                className="min-w-0 flex-1 px-2 py-4 text-center sm:px-4 sm:py-5 md:px-6 md:py-5"
+                className="min-w-0 flex-1 px-2 py-5 text-center sm:px-4 sm:py-6 md:px-6 md:py-6"
                 style={{
                   background: 'rgba(0,0,0,0.35)',
                   backdropFilter: 'blur(8px)',
@@ -135,11 +144,11 @@ export default function Hero() {
                 <div
                   style={{
                     fontFamily: 'var(--font-playfair)',
-                    fontSize: 'clamp(26px, 3vw, 34px)',
+                    fontSize: 'clamp(30px, 3.6vw, 42px)',
                     fontWeight: 400,
                     color: 'var(--brand-yellow)',
                     lineHeight: 1,
-                    marginBottom: '6px',
+                    marginBottom: '8px',
                   }}
                 >
                   {s.num}
@@ -147,7 +156,7 @@ export default function Hero() {
                 <div
                   style={{
                     fontFamily: 'var(--font-jost)',
-                    fontSize: '9px',
+                    fontSize: 'clamp(9px, 1.1vw, 11px)',
                     letterSpacing: '0.16em',
                     textTransform: 'uppercase',
                     color: 'rgba(255,255,255,0.5)',
@@ -161,21 +170,24 @@ export default function Hero() {
           </div>
 
           {/* CTAs — same width as stats row on desktop; equal-size buttons */}
-          <div className="flex w-full max-w-[600px] flex-row items-stretch gap-4">
+          <div
+            className="flex w-full max-w-[600px] flex-row items-stretch gap-4"
+            style={{ marginTop: 'clamp(-14px, -2vw, -8px)' }}
+          >
             <button
               type="button"
-              className="box-border flex min-h-[56px] min-w-0 flex-1 items-center justify-center"
+              className="box-border flex min-h-[60px] min-w-0 flex-1 items-center justify-center"
               style={{
                 background: 'var(--brand-yellow)',
                 color: 'var(--ink)',
                 fontFamily: 'var(--font-jost)',
-                fontSize: '11px',
+                fontSize: 'clamp(11px, 1.15vw, 13px)',
                 fontWeight: 700,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 border: 'none',
                 cursor: 'pointer',
-                padding: '20px 24px',
+                padding: '22px 26px',
                 gap: '12px',
                 transition: 'background 0.2s, transform 0.2s',
               }}
@@ -195,18 +207,18 @@ export default function Hero() {
               href="https://wa.me/971000000000"
               target="_blank"
               rel="noopener noreferrer"
-              className="box-border flex min-h-[56px] min-w-0 flex-1 items-center justify-center"
+              className="box-border flex min-h-[60px] min-w-0 flex-1 items-center justify-center"
               style={{
                 background: 'transparent',
                 color: 'rgba(255,255,255,0.88)',
                 border: '1px solid rgba(255,255,255,0.3)',
                 fontFamily: 'var(--font-jost)',
-                fontSize: '11px',
+                fontSize: 'clamp(11px, 1.15vw, 13px)',
                 fontWeight: 500,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
-                padding: '20px 24px',
+                padding: '22px 26px',
                 gap: '10px',
                 transition: 'all 0.25s',
               }}
@@ -223,6 +235,7 @@ export default function Hero() {
             >
               WhatsApp Us
             </a>
+          </div>
           </div>
         </div>
       </div>
