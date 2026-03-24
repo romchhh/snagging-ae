@@ -37,16 +37,14 @@ export default function Hero() {
           className="pointer-events-none absolute inset-0"
           aria-hidden
           style={{
-            background: [
+            background:
               'linear-gradient(to top, rgba(6,5,4,0.95) 0%, rgba(6,5,4,0.55) 50%, rgba(0,0,0,0.15) 100%)',
-              'radial-gradient(ellipse at 60% 100%, rgba(249,220,10,0.06) 0%, transparent 60%)',
-            ].join(', '),
           }}
         />
       </div>
 
       {/* CONTENT — mobile: raised (translate + less pt); desktop: lower */}
-      <div className="relative z-10 w-full max-md:-translate-y-[30dvh] pb-20 pt-24 layout-container md:translate-y-[29dvh] md:pb-24 md:pt-60">
+      <div className="relative z-10 w-full max-md:-translate-y-[30dvh] layout-container md:translate-y-[29dvh] md:pt-60" style={{ paddingTop: '96px', paddingBottom: 'clamp(140px, 18dvh, 240px)' }}>
         <div
           ref={textRef}
           style={{
@@ -116,7 +114,7 @@ export default function Hero() {
           {/* STATS ROW — single row on all breakpoints */}
           <div
             className="mb-14 flex w-full max-w-[600px] flex-nowrap gap-0"
-            style={{ border: '1px solid rgba(249,220,10,0.18)' }}
+            style={{ border: '1px solid rgba(255,255,255,0.14)' }}
           >
             {[
               { num: '75K+', label: 'Inspections' },
@@ -130,7 +128,7 @@ export default function Hero() {
                 style={{
                   background: 'rgba(0,0,0,0.35)',
                   backdropFilter: 'blur(8px)',
-                  borderRight: i < 3 ? '1px solid rgba(249,220,10,0.15)' : 'none',
+                  borderRight: i < 3 ? '1px solid rgba(255,255,255,0.1)' : 'none',
                   flexBasis: 0,
                 }}
               >
@@ -250,7 +248,7 @@ export default function Hero() {
           style={{
             width: '1px',
             height: '64px',
-            background: 'linear-gradient(to bottom, rgba(249,220,10,0.7), transparent)',
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.35), transparent)',
           }}
         />
       </div>

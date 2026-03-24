@@ -1,8 +1,16 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { submitInspectionForm } from '@/lib/submit-inspection-form'
 
 export default function Contact() {
   const ref = useRef<HTMLElement>(null)
+  const [fullName, setFullName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [propertyType, setPropertyType] = useState('')
+  const [message, setMessage] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [feedback, setFeedback] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -14,6 +22,31 @@ export default function Contact() {
     ref.current?.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setFeedback(null)
+    setSubmitting(true)
+    const result = await submitInspectionForm({
+      formSource: 'contact',
+      fullName,
+      phone,
+      email,
+      propertyType,
+      message,
+    })
+    setSubmitting(false)
+    if (result.ok) {
+      setFeedback({ type: 'ok', text: 'Thank you — we will get back to you shortly.' })
+      setFullName('')
+      setPhone('')
+      setEmail('')
+      setPropertyType('')
+      setMessage('')
+    } else {
+      setFeedback({ type: 'err', text: result.error })
+    }
+  }
 
   const inp: React.CSSProperties = {
     width: '100%',
@@ -110,9 +143,8 @@ export default function Contact() {
           style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '2px',
+            gap: 'clamp(16px, 3vw, 28px)',
             marginBottom: 'clamp(36px, 6vw, 64px)',
-            background: 'rgba(255,255,255,0.05)',
           }}
         >
           {contacts.map((c) => (
@@ -128,12 +160,8 @@ export default function Contact() {
                 alignItems: 'center',
                 gap: '16px',
                 padding: 'clamp(18px, 3vw, 28px) clamp(20px, 3.5vw, 36px)',
-                background: 'rgba(255,255,255,0.03)',
                 textDecoration: 'none',
-                transition: 'background 0.25s',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(249,220,10,0.08)')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.03)')}
             >
               <div style={{ color: 'var(--brand-yellow)', flexShrink: 0 }}>{c.icon}</div>
               <div>
@@ -166,8 +194,9 @@ export default function Contact() {
         </div>
 
         {/* ── FORM PANEL ── */}
-        <div
+        <form
           className="reveal d3"
+          onSubmit={handleSubmit}
           style={{
             borderTop: '1px solid rgba(255,255,255,0.08)',
             paddingTop: 'clamp(36px, 6vw, 56px)',
@@ -187,7 +216,12 @@ export default function Contact() {
               <label style={labelStyle}>Full Name</label>
               <input
                 type="text"
+                name="fullName"
+                autoComplete="name"
                 placeholder="Your name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
                 style={inp}
                 onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--brand-yellow)'; e.currentTarget.style.background = 'rgba(249,220,10,0.04)' }}
                 onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)' }}
@@ -198,7 +232,12 @@ export default function Contact() {
               <label style={labelStyle}>Phone</label>
               <input
                 type="tel"
+                name="phone"
+                autoComplete="tel"
                 placeholder="+971 00 000 0000"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
                 style={inp}
                 onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--brand-yellow)'; e.currentTarget.style.background = 'rgba(249,220,10,0.04)' }}
                 onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)' }}
@@ -209,7 +248,12 @@ export default function Contact() {
               <label style={labelStyle}>Email</label>
               <input
                 type="email"
+                name="email"
+                autoComplete="email"
                 placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 style={inp}
                 onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--brand-yellow)'; e.currentTarget.style.background = 'rgba(249,220,10,0.04)' }}
                 onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)' }}
@@ -219,6 +263,9 @@ export default function Contact() {
             <div>
               <label style={labelStyle}>Property Type</label>
               <select
+                name="propertyType"
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
                 style={{
                   ...inp,
                   cursor: 'pointer',
@@ -230,7 +277,7 @@ export default function Contact() {
                 onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--brand-yellow)'; e.currentTarget.style.background = 'rgba(249,220,10,0.04)' }}
                 onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)' }}
               >
-                <option value="" disabled style={{ background: 'var(--ink)' }}>Select type</option>
+                <option value="" style={{ background: 'var(--ink)' }}>Select type (optional)</option>
                 {['Apartment', 'Villa', 'Townhouse', 'Penthouse', 'Hotel Apartment', 'Commercial', 'Entire Building'].map((o) => (
                   <option key={o} style={{ background: 'var(--ink)' }}>{o}</option>
                 ))}
@@ -239,22 +286,37 @@ export default function Contact() {
           </div>
 
           {/* Message — full width */}
-          <div style={{ marginBottom: 'clamp(28px, 5vw, 44px)' }}>
+          <div>
             <label style={labelStyle}>Message</label>
             <textarea
+              name="message"
               placeholder="Property location, size, any specific concerns…"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               style={{ ...inp, resize: 'vertical', minHeight: '90px' }}
               onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--brand-yellow)'; e.currentTarget.style.background = 'rgba(249,220,10,0.04)' }}
               onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)' }}
             />
           </div>
 
-          {/* Submit row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '28px', flexWrap: 'wrap' }}>
+          {/* Submit — separated from message */}
+          <div
+            style={{
+              borderTop: '1px solid rgba(255,255,255,0.08)',
+              marginTop: 'clamp(36px, 6vw, 56px)',
+              paddingTop: 'clamp(36px, 6vw, 56px)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '20px',
+              textAlign: 'center',
+            }}
+          >
             <button
-              type="button"
+              type="submit"
+              disabled={submitting}
               style={{
-                background: 'var(--brand-yellow)',
+                background: submitting ? 'rgba(249,220,10,0.5)' : 'var(--brand-yellow)',
                 color: 'var(--ink)',
                 border: 'none',
                 padding: '18px 48px',
@@ -263,21 +325,36 @@ export default function Contact() {
                 fontWeight: 700,
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                cursor: 'pointer',
+                cursor: submitting ? 'wait' : 'pointer',
                 transition: 'background 0.2s, transform 0.2s',
                 flexShrink: 0,
               }}
               onMouseEnter={(e) => {
+                if (submitting) return
                 e.currentTarget.style.background = 'var(--brand-yellow-hover)'
                 e.currentTarget.style.transform = 'translateY(-2px)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--brand-yellow)'
+                e.currentTarget.style.background = submitting ? 'rgba(249,220,10,0.5)' : 'var(--brand-yellow)'
                 e.currentTarget.style.transform = 'translateY(0)'
               }}
             >
-              Book Inspection →
+              {submitting ? 'Sending…' : 'Book Inspection →'}
             </button>
+            {feedback && (
+              <p
+                style={{
+                  fontFamily: 'var(--font-jost)',
+                  fontSize: 'calc(13px * var(--text-scale))',
+                  color: feedback.type === 'ok' ? 'rgba(249,220,10,0.95)' : '#f88',
+                  lineHeight: 1.5,
+                  fontWeight: 400,
+                  maxWidth: '360px',
+                }}
+              >
+                {feedback.text}
+              </p>
+            )}
             <p
               style={{
                 fontFamily: 'var(--font-jost)',
@@ -290,7 +367,7 @@ export default function Contact() {
               We respond within a few hours.<br />No obligations.
             </p>
           </div>
-        </div>
+        </form>
 
       </div>
     </section>

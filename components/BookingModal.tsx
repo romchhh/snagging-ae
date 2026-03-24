@@ -1,11 +1,28 @@
 'use client'
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, useCallback } from 'react'
+import { submitInspectionForm } from '@/lib/submit-inspection-form'
+import { lockBodyScroll, unlockBodyScroll } from '@/lib/scroll-lock'
 
 export default function BookingModal() {
   const [open, setOpen] = useState(false)
+  const [fullName, setFullName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [propertyType, setPropertyType] = useState('')
+  const [message, setMessage] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [feedback, setFeedback] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
 
-  const close = useCallback(() => setOpen(false), [])
+  const close = useCallback(() => {
+    setOpen(false)
+    setFeedback(null)
+    setFullName('')
+    setPhone('')
+    setEmail('')
+    setPropertyType('')
+    setMessage('')
+  }, [])
 
   useEffect(() => {
     const handler = () => setOpen(true)
@@ -13,17 +30,16 @@ export default function BookingModal() {
     return () => window.removeEventListener('open-booking-modal', handler)
   }, [])
 
-  /* lock scroll */
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!open) return
-    const saved = window.scrollY
-    document.body.style.cssText = `position:fixed;top:-${saved}px;left:0;right:0;width:100%;overflow:hidden`
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') close() }
+    lockBodyScroll()
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close()
+    }
     window.addEventListener('keydown', onKey)
     return () => {
       window.removeEventListener('keydown', onKey)
-      document.body.style.cssText = ''
-      window.scrollTo(0, saved)
+      unlockBodyScroll()
     }
   }, [open, close])
 
@@ -61,6 +77,31 @@ export default function BookingModal() {
   const onBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'
     e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setFeedback(null)
+    setSubmitting(true)
+    const result = await submitInspectionForm({
+      formSource: 'booking-modal',
+      fullName,
+      phone,
+      email,
+      propertyType,
+      message,
+    })
+    setSubmitting(false)
+    if (result.ok) {
+      setFeedback({ type: 'ok', text: 'Thank you — we will get back to you shortly.' })
+      setFullName('')
+      setPhone('')
+      setEmail('')
+      setPropertyType('')
+      setMessage('')
+    } else {
+      setFeedback({ type: 'err', text: result.error })
+    }
   }
 
   if (!open) return null
@@ -161,28 +202,67 @@ export default function BookingModal() {
           </h2>
 
           {/* Form — fills remaining height, distributes space evenly */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 0 }}>
+          <form
+            onSubmit={handleSubmit}
+            style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 0 }}
+          >
 
             {/* Name + Phone row */}
             <div className="bm-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 clamp(12px, 3vw, 24px)' }}>
               <div>
                 <label style={lbl}>Full Name</label>
-                <input type="text" placeholder="Your name" style={inp} onFocus={onFocus} onBlur={onBlur} />
+                <input
+                  type="text"
+                  name="fullName"
+                  autoComplete="name"
+                  placeholder="Your name"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  required
+                  style={inp}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                />
               </div>
               <div>
                 <label style={lbl}>Phone</label>
-                <input type="tel" placeholder="+971 00 000 0000" style={inp} onFocus={onFocus} onBlur={onBlur} />
+                <input
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  placeholder="+971 00 000 0000"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                  style={inp}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                />
               </div>
             </div>
 
             <div>
               <label style={lbl}>Email</label>
-              <input type="email" placeholder="your@email.com" style={inp} onFocus={onFocus} onBlur={onBlur} />
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                style={inp}
+                onFocus={onFocus}
+                onBlur={onBlur}
+              />
             </div>
 
             <div>
               <label style={lbl}>Property Type</label>
               <select
+                name="propertyType"
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
                 style={{
                   ...inp,
                   cursor: 'pointer',
@@ -194,28 +274,48 @@ export default function BookingModal() {
                 onFocus={onFocus}
                 onBlur={onBlur}
               >
-                <option value="" disabled style={{ background: 'var(--ink)' }}>Select type</option>
+                <option value="" style={{ background: 'var(--ink)' }}>Select type (optional)</option>
                 {['Apartment', 'Villa', 'Townhouse', 'Penthouse', 'Hotel Apartment', 'Commercial', 'Entire Building'].map((o) => (
                   <option key={o} style={{ background: 'var(--ink)' }}>{o}</option>
                 ))}
               </select>
             </div>
 
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
               <label style={lbl}>Message</label>
               <textarea
+                name="message"
                 placeholder="Property location, size, any specific concerns…"
-                style={{ ...inp, resize: 'none', flex: 1, minHeight: '60px' }}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                style={{ ...inp, resize: 'none', height: '72px', minHeight: '72px', boxSizing: 'border-box' }}
                 onFocus={onFocus}
                 onBlur={onBlur}
               />
             </div>
 
+            {feedback && (
+              <p
+                style={{
+                  fontFamily: 'var(--font-jost)',
+                  fontSize: 'calc(12px * var(--text-scale))',
+                  color: feedback.type === 'ok' ? 'var(--brand-yellow)' : '#f88',
+                  lineHeight: 1.45,
+                  margin: 0,
+                  textAlign: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                {feedback.text}
+              </p>
+            )}
+
             <button
-              type="button"
+              type="submit"
+              disabled={submitting}
               style={{
                 width: '100%',
-                background: 'var(--brand-yellow)',
+                background: submitting ? 'rgba(249,220,10,0.5)' : 'var(--brand-yellow)',
                 color: 'var(--ink)',
                 border: 'none',
                 padding: 'clamp(14px, 2.5vh, 18px)',
@@ -224,22 +324,23 @@ export default function BookingModal() {
                 fontWeight: 700,
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                cursor: 'pointer',
+                cursor: submitting ? 'wait' : 'pointer',
                 transition: 'background 0.2s, transform 0.2s',
                 flexShrink: 0,
               }}
               onMouseEnter={(e) => {
+                if (submitting) return
                 e.currentTarget.style.background = 'var(--brand-yellow-hover)'
                 e.currentTarget.style.transform = 'translateY(-2px)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--brand-yellow)'
+                e.currentTarget.style.background = submitting ? 'rgba(249,220,10,0.5)' : 'var(--brand-yellow)'
                 e.currentTarget.style.transform = 'translateY(0)'
               }}
             >
-              Book Inspection →
+              {submitting ? 'Sending…' : 'Book Inspection →'}
             </button>
-          </div>
+          </form>
         </div>
       </div>
 

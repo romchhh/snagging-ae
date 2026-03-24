@@ -91,22 +91,14 @@ export default function About() {
             {/* STATS */}
             <div
               className="reveal d4 grid grid-cols-2"
-              style={{ gap: '2px', background: 'rgba(255,255,255,0.06)' }}
+              style={{ gap: 'clamp(16px, 3vw, 28px)' }}
             >
               {stats.map((s) => (
                 <div
                   key={s.num}
                   style={{
-                    background: 'rgba(255,255,255,0.04)',
                     padding: '28px',
                     textAlign: 'center',
-                    transition: 'background 0.3s',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(249,220,10,0.08)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
                   }}
                 >
                   <div

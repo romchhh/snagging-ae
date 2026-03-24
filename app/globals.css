@@ -89,27 +89,10 @@ body {
 .site-nav .nav-desktop-link {
   color: var(--nav-link);
   transition: color 0.2s ease;
-  position: relative;
-  padding-bottom: 2px;
-}
-
-.site-nav .nav-desktop-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--brand-yellow);
-  transition: width 0.25s ease;
 }
 
 .site-nav .nav-desktop-link:hover {
   color: var(--nav-link-hover);
-}
-
-.site-nav .nav-desktop-link:hover::after {
-  width: 100%;
 }
 
 @keyframes nav-slide-in {
@@ -160,6 +143,7 @@ body {
 .d3 { transition-delay: 0.3s; }
 .d4 { transition-delay: 0.4s; }
 .d5 { transition-delay: 0.5s; }
+.d6 { transition-delay: 0.6s; }
 
 /* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar { width: 6px; }

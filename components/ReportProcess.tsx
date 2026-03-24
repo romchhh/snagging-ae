@@ -36,75 +36,77 @@ export default function ReportProcess() {
       {/* REPORT SECTION */}
       <section id="report" className="section-y" style={{ background: 'var(--ink)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="layout-container">
+          <div className="mb-12 flex flex-col items-center text-center lg:mb-16">
+            <h2
+              className="reveal d1"
+              style={{
+                fontFamily: 'var(--font-playfair)',
+                fontSize: 'clamp(calc(40px * var(--text-scale)), 4vw, calc(60px * var(--text-scale)))',
+                fontWeight: 400,
+                color: '#fff',
+                lineHeight: 1.12,
+                marginBottom: '20px',
+                letterSpacing: '-0.01em',
+              }}
+            >
+              Accurate &{' '}
+              <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Detailed Reports</em>
+            </h2>
+            <p
+              className="reveal d2 w-full"
+              style={{
+                fontSize: 'calc(17px * var(--text-scale))',
+                color: 'rgba(255,255,255,0.65)',
+                lineHeight: 1.9,
+                fontWeight: 300,
+                maxWidth: '520px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginBottom: 0,
+              }}
+            >
+              After inspection, you receive a clear and structured report that gives you full clarity on your property&rsquo;s condition.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div>
-              <h2
-                className="reveal d1"
-                style={{
-                  fontFamily: 'var(--font-playfair)',
-                  fontSize: 'clamp(calc(40px * var(--text-scale)), 4vw, calc(60px * var(--text-scale)))',
-                  fontWeight: 400,
-                  color: '#fff',
-                  lineHeight: 1.12,
-                  marginBottom: '20px',
-                  letterSpacing: '-0.01em',
-                  textAlign: 'center',
-                }}
-              >
-                Accurate &{' '}
-                <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Detailed Reports</em>
-              </h2>
-              <p
-                className="reveal d2"
-                style={{
-                  fontSize: 'calc(17px * var(--text-scale))',
-                  color: 'rgba(255,255,255,0.65)',
-                  lineHeight: 1.9,
-                  marginBottom: '36px',
-                  fontWeight: 300,
-                }}
-              >
-                After inspection, you receive a clear and structured report that gives you full clarity on your property&rsquo;s condition.
-              </p>
-              <ul
-                className="reveal d3"
-                style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}
-              >
-                {['Full defect list with photos', 'Severity and priority levels', 'Repair cost estimation', 'Expert recommendations'].map((item) => (
-                  <li
-                    key={item}
-                    style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: 'calc(16px * var(--text-scale))', color: '#fff' }}
+            <ul
+              className="reveal d3"
+              style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}
+            >
+              {['Full defect list with photos', 'Severity and priority levels', 'Repair cost estimation', 'Expert recommendations'].map((item) => (
+                <li
+                  key={item}
+                  style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: 'calc(16px * var(--text-scale))', color: '#fff' }}
+                >
+                  <span
+                    aria-hidden
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: 'calc(16px * var(--text-scale))',
+                      lineHeight: 1,
+                      color: 'var(--brand-yellow)',
+                      fontWeight: 700,
+                      flexShrink: 0,
+                    }}
                   >
-                    <span
-                      aria-hidden
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: 'calc(16px * var(--text-scale))',
-                        lineHeight: 1,
-                        color: 'var(--brand-yellow)',
-                        fontWeight: 700,
-                        flexShrink: 0,
-                      }}
-                    >
-                      ✓
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
 
             {/* REPORT MOCKUP */}
             <div
-              className="reveal d2"
+              className="reveal d4"
               style={{
                 background: '#fff',
                 padding: 'clamp(28px, 4vw, 44px)',
                 boxShadow: '0 32px 80px rgba(0,0,0,0.3)',
                 position: 'relative',
-                borderTop: '4px solid var(--brand-yellow)',
               }}
             >
               <div
@@ -144,33 +146,79 @@ export default function ReportProcess() {
                 </div>
               </div>
 
-              {defects.map((d) => (
-                <div
-                  key={d.label}
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    padding: '13px 0',
-                    borderBottom: '1px solid var(--stone)',
-                  }}
-                >
-                  <span style={{ fontSize: 'calc(13px * var(--text-scale))', color: 'var(--ink-2)' }}>{d.label}</span>
-                  <span
+              <div
+                role="list"
+                style={{
+                  border: '1px solid var(--stone)',
+                  borderRadius: '2px',
+                  background: 'var(--cream)',
+                  overflow: 'hidden',
+                }}
+              >
+                {defects.map((d, i) => (
+                  <div
+                    key={d.label}
+                    role="listitem"
                     style={{
-                      fontFamily: 'var(--font-jost)',
-                      fontSize: 'calc(9px * var(--text-scale))',
-                      letterSpacing: '0.12em',
-                      padding: '4px 12px',
-                      fontWeight: 700,
-                      background: d.bg,
-                      color: d.color,
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '12px',
+                      padding: '12px 14px',
+                      borderBottom: i < defects.length - 1 ? '1px solid var(--stone)' : 'none',
+                      background: '#fff',
                     }}
                   >
-                    {d.sev}
-                  </span>
-                </div>
-              ))}
+                    <span
+                      aria-hidden
+                      style={{
+                        width: '18px',
+                        height: '18px',
+                        flexShrink: 0,
+                        marginTop: '2px',
+                        border: '1.5px solid var(--ink)',
+                        borderRadius: '3px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        lineHeight: 1,
+                        color: 'var(--ink)',
+                        fontFamily: 'var(--font-jost)',
+                      }}
+                    >
+                      ✓
+                    </span>
+                    <span
+                      style={{
+                        flex: 1,
+                        minWidth: 0,
+                        fontSize: 'calc(13px * var(--text-scale))',
+                        color: 'var(--ink-2)',
+                        lineHeight: 1.45,
+                        paddingTop: '1px',
+                      }}
+                    >
+                      {d.label}
+                    </span>
+                    <span
+                      style={{
+                        flexShrink: 0,
+                        fontFamily: 'var(--font-jost)',
+                        fontSize: 'calc(9px * var(--text-scale))',
+                        letterSpacing: '0.1em',
+                        padding: '5px 10px',
+                        fontWeight: 700,
+                        background: d.bg,
+                        color: d.color,
+                        alignSelf: 'flex-start',
+                      }}
+                    >
+                      {d.sev}
+                    </span>
+                  </div>
+                ))}
+              </div>
 
               <div style={{ marginTop: '28px', paddingTop: '20px', borderTop: '1px solid var(--stone)' }}>
                 <div
@@ -186,17 +234,30 @@ export default function ReportProcess() {
                 >
                   Estimated Repair Cost
                 </div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-playfair)',
-                    fontSize: 'calc(44px * var(--text-scale))',
-                    color: 'var(--ink)',
-                    fontWeight: 400,
-                    lineHeight: 1,
-                  }}
-                >
-                  AED{' '}
-                  <span style={{ color: 'var(--brand-yellow)' }}>4,200</span>
+                <div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-playfair)',
+                      fontSize: 'calc(44px * var(--text-scale))',
+                      color: 'var(--ink)',
+                      fontWeight: 400,
+                      lineHeight: 1,
+                    }}
+                  >
+                    AED 4,200
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-jost)',
+                      fontSize: 'calc(12px * var(--text-scale))',
+                      color: 'var(--muted)',
+                      marginTop: '8px',
+                      letterSpacing: '0.06em',
+                      fontWeight: 400,
+                    }}
+                  >
+                    UAE Dirham (AED)
+                  </div>
                 </div>
               </div>
             </div>

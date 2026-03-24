@@ -72,7 +72,7 @@ export default function Trust() {
   ]
 
   return (
-    <section id="trust" ref={ref} className="section-y" style={{ background: '#fff', borderTop: '4px solid var(--brand-yellow)' }}>
+    <section id="trust" ref={ref} className="section-y" style={{ background: '#fff' }}>
       <div className="layout-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 

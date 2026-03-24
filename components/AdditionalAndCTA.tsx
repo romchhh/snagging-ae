@@ -88,8 +88,9 @@ export default function AdditionalAndCTA() {
           <p style={{ fontSize: 'calc(16px * var(--text-scale))', color: 'rgba(255,255,255,0.65)', marginBottom: '36px', maxWidth: '440px', lineHeight: 1.75 }}>
             Get a real sample report before you commit. No obligation.
           </p>
-          <a
-            href="#contact"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event('open-booking-modal'))}
             style={{
               background: 'var(--brand-yellow)',
               color: 'var(--ink)',
@@ -98,7 +99,8 @@ export default function AdditionalAndCTA() {
               fontWeight: 700,
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              textDecoration: 'none',
+              border: 'none',
+              cursor: 'pointer',
               padding: '18px 52px',
               transition: 'background 0.2s, transform 0.2s',
             }}
@@ -112,7 +114,7 @@ export default function AdditionalAndCTA() {
             }}
           >
             Send Me the Sample →
-          </a>
+          </button>
         </div>
       </div>
 
@@ -122,11 +124,19 @@ export default function AdditionalAndCTA() {
         className="section-y"
         style={{
           background: 'var(--cream)',
-          paddingBottom: 'calc(var(--section-y) + clamp(2.5rem, 6vw, 5rem))',
+          paddingBottom: 'clamp(2rem, 4vw, 3.25rem)',
         }}
       >
         <div className="layout-container">
-          <div className="mb-14" style={{ textAlign: 'center' }}>
+          <div
+            className="flex flex-col items-center"
+            style={{
+              textAlign: 'center',
+              paddingBottom: 'clamp(0.75rem, 2.5vw, 1.25rem)',
+              marginBottom: 'clamp(1rem, 3.5vw, 2rem)',
+              gap: 'clamp(0.75rem, 2vw, 1.25rem)',
+            }}
+          >
             <h2
               className="reveal d1"
               style={{
@@ -141,13 +151,26 @@ export default function AdditionalAndCTA() {
               Additional{' '}
               <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Services</em>
             </h2>
+            <p
+              className="reveal d2"
+              style={{
+                fontSize: 'calc(17px * var(--text-scale))',
+                color: 'var(--ink-2)',
+                maxWidth: '520px',
+                lineHeight: 1.85,
+                fontWeight: 300,
+                margin: 0,
+              }}
+            >
+              POA and handover support, property management, Golden Visa, and legal advisory — so you are covered long after the inspection.
+            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
             {additionalServices.map((s, i) => (
               <div
                 key={s.title}
-                className={`reveal d${i + 1}`}
+                className={`reveal d${i + 3}`}
                 style={{
                   background: '#fff',
                   padding: 'clamp(32px, 5vw, 48px) clamp(28px, 4vw, 44px)',

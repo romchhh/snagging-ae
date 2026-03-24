@@ -28,7 +28,16 @@ export default function FAQ() {
   }, [])
 
   return (
-    <section id="faq" ref={ref} className="section-y" style={{ background: 'var(--cream)' }}>
+    <section
+      id="faq"
+      ref={ref}
+      className="section-y"
+      style={{
+        background: 'var(--cream)',
+        marginTop: 'clamp(-1.25rem, -2.5vw, -2rem)',
+        paddingTop: 'clamp(1.5rem, 3vw, 2.5rem)',
+      }}
+    >
       <div className="layout-container">
         <div className="mb-16" style={{ textAlign: 'center' }}>
           <h2

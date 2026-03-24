@@ -79,30 +79,39 @@ export default function InspectWhy() {
       {/* WHAT WE INSPECT */}
       <section className="section-y" style={{ background: '#fff', borderTop: '1px solid var(--stone)' }}>
         <div className="layout-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            <div>
-              <h2
-                className="reveal d1"
-                style={{
-                  fontFamily: 'var(--font-playfair)',
-                  fontSize: 'clamp(calc(40px * var(--text-scale)), 4vw, calc(62px * var(--text-scale)))',
-                  fontWeight: 400,
-                  color: 'var(--ink)',
-                  lineHeight: 1.12,
-                  marginBottom: '20px',
-                  letterSpacing: '-0.01em',
-                  textAlign: 'center',
-                }}
-              >
-                What We{' '}
-                <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Inspect</em>
-              </h2>
-              <p className="reveal d2" style={{ fontSize: 'calc(17px * var(--text-scale))', color: 'var(--ink-2)', lineHeight: 1.9, fontWeight: 300, maxWidth: '420px', textAlign: 'center' }}>
-                We use professional tools and engineering standards to inspect every critical part of your property. No system is left unchecked.
-              </p>
-            </div>
+          <div className="mb-12 flex flex-col items-center text-center lg:mb-16">
+            <h2
+              className="reveal d1"
+              style={{
+                fontFamily: 'var(--font-playfair)',
+                fontSize: 'clamp(calc(40px * var(--text-scale)), 4vw, calc(62px * var(--text-scale)))',
+                fontWeight: 400,
+                color: 'var(--ink)',
+                lineHeight: 1.12,
+                marginBottom: '20px',
+                letterSpacing: '-0.01em',
+              }}
+            >
+              What We{' '}
+              <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Inspect</em>
+            </h2>
+            <p
+              className="reveal d2 w-full"
+              style={{
+                fontSize: 'calc(17px * var(--text-scale))',
+                color: 'var(--ink-2)',
+                lineHeight: 1.9,
+                fontWeight: 300,
+                maxWidth: '420px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              }}
+            >
+              We use professional tools and engineering standards to inspect every critical part of your property. No system is left unchecked.
+            </p>
+          </div>
 
-            <ul className="reveal d2 list-none grid grid-cols-2 gap-x-4 sm:gap-x-10">
+          <ul className="reveal d2 mx-auto grid w-full max-w-4xl list-none grid-cols-2 gap-x-4 sm:gap-x-10">
               {items.map((item) => (
                 <li
                   key={item}
@@ -113,8 +122,10 @@ export default function InspectWhy() {
                     color: 'var(--ink)',
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     gap: '12px',
                     fontWeight: 400,
+                    textAlign: 'center',
                   }}
                 >
                   <span
@@ -129,8 +140,7 @@ export default function InspectWhy() {
                   {item}
                 </li>
               ))}
-            </ul>
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -140,11 +150,20 @@ export default function InspectWhy() {
         className="section-y"
         style={{
           background: 'var(--cream)',
-          paddingBottom: 'calc(var(--section-y) + clamp(2.5rem, 6vw, 5rem))',
+          paddingBottom: 'calc(var(--section-y) + clamp(4.5rem, 11vw, 8.5rem))',
         }}
       >
         <div className="layout-container">
-          <div className="mb-16" style={{ textAlign: 'center' }}>
+          {/* pb reserves space for .reveal translateY(28px) so the title does not overlap the grid */}
+          <div
+            className="flex flex-col items-center"
+            style={{
+              textAlign: 'center',
+              paddingBottom: 'clamp(1rem, 3vw, 1.5rem)',
+              marginBottom: 'clamp(1.25rem, 4vw, 2.25rem)',
+              gap: 'clamp(0.75rem, 2vw, 1.25rem)',
+            }}
+          >
             <h2
               className="reveal d1"
               style={{
@@ -159,13 +178,26 @@ export default function InspectWhy() {
               Why Snagging Is{' '}
               <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Essential</em>
             </h2>
+            <p
+              className="reveal d2"
+              style={{
+                fontSize: 'calc(17px * var(--text-scale))',
+                color: 'var(--ink-2)',
+                maxWidth: '520px',
+                lineHeight: 1.85,
+                fontWeight: 300,
+                margin: 0,
+              }}
+            >
+              Independent inspection protects your money, your safety, and your legal position — before you accept keys or complete a purchase.
+            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
             {whyCards.map((c, i) => (
               <div
                 key={c.num}
-                className={`reveal d${i + 1}${c.gold ? '' : ' why-card'}`}
+                className={`reveal d${i + 3}${c.gold ? '' : ' why-card'}`}
                 style={{
                   background: c.gold ? 'var(--brand-yellow)' : '#fff',
                   padding: 'clamp(36px, 5vw, 56px) clamp(32px, 4vw, 52px)',

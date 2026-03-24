@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { lockBodyScroll, unlockBodyScroll } from '@/lib/scroll-lock'
 
 const NAV_LINKS = [
   { href: '#services', label: 'Services' },
@@ -15,7 +16,6 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const scrollYRef = useRef(0)
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60)
@@ -24,20 +24,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!menuOpen) return
 
-    scrollYRef.current = window.scrollY
-    const bodyEl = document.body
-    const rootEl = document.documentElement
-    bodyEl.style.position = 'fixed'
-    bodyEl.style.top = `-${scrollYRef.current}px`
-    bodyEl.style.left = '0'
-    bodyEl.style.right = '0'
-    bodyEl.style.width = '100%'
-    bodyEl.style.overflow = 'hidden'
-    bodyEl.style.touchAction = 'none'
-    rootEl.style.overflow = 'hidden'
+    lockBodyScroll()
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setMenuOpen(false)
@@ -45,15 +35,7 @@ export default function Navbar() {
     window.addEventListener('keydown', onKey)
     return () => {
       window.removeEventListener('keydown', onKey)
-      bodyEl.style.position = ''
-      bodyEl.style.top = ''
-      bodyEl.style.left = ''
-      bodyEl.style.right = ''
-      bodyEl.style.width = ''
-      bodyEl.style.overflow = ''
-      bodyEl.style.touchAction = ''
-      rootEl.style.overflow = ''
-      window.scrollTo(0, scrollYRef.current)
+      unlockBodyScroll()
     }
   }, [menuOpen])
 
@@ -346,8 +328,8 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => {
-                closeMenu()
                 window.dispatchEvent(new Event('open-booking-modal'))
+                requestAnimationFrame(() => setMenuOpen(false))
               }}
               style={{
                 marginTop: '24px',
