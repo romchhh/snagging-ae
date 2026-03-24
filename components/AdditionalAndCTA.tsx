@@ -67,7 +67,8 @@ export default function AdditionalAndCTA() {
         <div style={{
           position: 'absolute', inset: 0,
           background: 'linear-gradient(to right, rgba(10,9,8,0.85) 0%, rgba(10,9,8,0.5) 50%, rgba(10,9,8,0.85) 100%)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center', padding: '40px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center',
+          padding: '40px clamp(1rem, 4vw, 2.5rem) clamp(56px, 11vw, 96px)',
         }}>
 
           <h2

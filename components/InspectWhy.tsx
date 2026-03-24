@@ -156,7 +156,7 @@ export default function InspectWhy() {
         <div className="layout-container">
           {/* pb reserves space for .reveal translateY(28px) so the title does not overlap the grid */}
           <div
-            className="flex flex-col items-center"
+            className="flex min-w-0 w-full max-w-full flex-col items-center"
             style={{
               textAlign: 'center',
               paddingBottom: 'clamp(1rem, 3vw, 1.5rem)',
@@ -165,28 +165,34 @@ export default function InspectWhy() {
             }}
           >
             <h2
-              className="reveal d1"
+              className="reveal d1 min-w-0 w-full max-w-full"
               style={{
                 fontFamily: 'var(--font-playfair)',
-                fontSize: 'clamp(calc(40px * var(--text-scale)), 4.5vw, calc(64px * var(--text-scale)))',
+                fontSize:
+                  'clamp(calc(26px * var(--text-scale)), calc(0.35rem + 5.2vw), calc(64px * var(--text-scale)))',
                 fontWeight: 400,
                 color: 'var(--ink)',
-                lineHeight: 1.08,
+                lineHeight: 1.12,
                 letterSpacing: '-0.01em',
+                overflowWrap: 'break-word',
+                wordBreak: 'break-word',
               }}
             >
               Why Snagging Is{' '}
               <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Essential</em>
             </h2>
             <p
-              className="reveal d2"
+              className="reveal d2 min-w-0 w-full max-w-full"
               style={{
-                fontSize: 'calc(17px * var(--text-scale))',
+                fontSize:
+                  'clamp(calc(15px * var(--text-scale)), calc(0.2rem + 3.2vw), calc(17px * var(--text-scale)))',
                 color: 'var(--ink-2)',
                 maxWidth: '520px',
                 lineHeight: 1.85,
                 fontWeight: 300,
                 margin: 0,
+                overflowWrap: 'break-word',
+                wordBreak: 'break-word',
               }}
             >
               Independent inspection protects your money, your safety, and your legal position — before you accept keys or complete a purchase.
