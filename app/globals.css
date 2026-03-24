@@ -1,26 +1,226 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === OFFICIAL BRANDBOOK PALETTE === */
+  --brand-yellow: #F9DC0A;
+  --brand-yellow-hover: #FFE840;
+  --brand-dark: #222221;
+  --brand-mid: #6F6F6E;
+  --brand-light: #F6F6F6;
+
+  /* Semantic tokens mapped to brand */
+  --gold: #F9DC0A;
+  --gold-light: #FFE840;
+  --cream: #F6F6F6;
+  --cream-2: #EEEEE8;
+  --stone: #DDDDD8;
+  --ink: #222221;
+  --ink-2: #333332;
+  --muted: #6F6F6E;
+  --container-max: 80rem;
+  --gutter-x: clamp(1rem, 4vw, 3rem);
+  --section-y: clamp(4.5rem, 10vw, 8rem);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-jost), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Centered page column — same gutters on all breakpoints */
+.layout-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter-x);
+  padding-right: var(--gutter-x);
+}
+
+/* ~+15% typography for main content below hero (inline sizes use var) */
+.page-below-hero {
+  --text-scale: 1.15;
+}
+
+.section-y {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+}
+
+/* ===== NAVBAR ===== */
+/* Always visible with dark bg when transparent, solid when scrolled */
+.site-nav {
+  --nav-logo: #fff;
+  --nav-link: rgba(255, 255, 255, 0.9);
+  --nav-link-hover: var(--brand-yellow);
+}
+
+.site-nav.is-solid {
+  --nav-logo: var(--ink);
+  --nav-link: var(--ink-2);
+  --nav-link-hover: var(--ink);
+}
+
+.site-nav .nav-logo-main {
+  color: var(--nav-logo);
+  transition: color 0.35s ease;
+}
+
+.site-nav .nav-desktop-link {
+  color: var(--nav-link);
+  transition: color 0.2s ease;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.site-nav .nav-desktop-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--brand-yellow);
+  transition: width 0.25s ease;
+}
+
+.site-nav .nav-desktop-link:hover {
+  color: var(--nav-link-hover);
+}
+
+.site-nav .nav-desktop-link:hover::after {
+  width: 100%;
+}
+
+@keyframes nav-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nav-menu-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+.d5 { transition-delay: 0.5s; }
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fff; }
+::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-yellow); }
+
+/* SECTION LABEL */
+.label {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 700;
+  background: var(--brand-yellow);
+  display: inline-block;
+  padding: 5px 12px;
+}
+
+/* GOLD LINE / ACCENT BAR */
+.gold-bar {
+  width: 56px;
+  height: 3px;
+  background: var(--brand-yellow);
+  margin: 24px 0 32px;
+}
+
+/* BODY TEXT */
+p {
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+/* HEADING ACCENT */
+em.accent {
+  color: var(--brand-yellow);
+  font-style: italic;
+}
+
+/* NUMBER FADE */
+.bg-num {
+  font-family: var(--font-playfair), serif;
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 400;
+  color: rgba(249, 220, 10, 0.06);
+  line-height: 1;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* SECTION DIVIDER */
+.section-divider {
+  height: 1px;
+  background: var(--stone);
+  margin: 0;
+}
+
+/* STRONG CONTRAST TEXT */
+strong {
+  color: var(--ink);
+  font-weight: 600;
 }
