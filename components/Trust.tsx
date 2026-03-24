@@ -140,7 +140,6 @@ export default function Trust() {
           {/* TEXT */}
           <div>
             <h2
-              className="reveal d1"
               style={{
                 fontFamily: 'var(--font-playfair)',
                 fontSize: 'clamp(calc(44px * var(--text-scale)), 4.2vw, calc(68px * var(--text-scale)))',
@@ -156,8 +155,8 @@ export default function Trust() {
               <br />
               <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Real Insights.</em>
             </h2>
+
             <p
-              className="reveal d2"
               style={{
                 fontSize: 'calc(19px * var(--text-scale))',
                 color: 'var(--ink-2)',
@@ -169,12 +168,11 @@ export default function Trust() {
               Most snagging companies focus only on visible defects. We inspect your property as engineers — analyzing systems, construction quality, and potential future risks.
             </p>
             <p
-              className="reveal d3"
               style={{
                 fontSize: 'calc(19px * var(--text-scale))',
                 color: 'var(--ink-2)',
                 lineHeight: 1.85,
-                marginBottom: '56px',
+                marginBottom: 'clamp(28px, 5vw, 40px)',
                 fontWeight: 300,
               }}
             >

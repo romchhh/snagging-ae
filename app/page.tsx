@@ -22,7 +22,7 @@ export default function Home() {
           <Trust />
           <Services />
           <Photobanner
-            src="/cta.png"
+            src="/2.jpg"
             alt="Property inspection and snagging in the UAE"
             height={400}
             overlay
