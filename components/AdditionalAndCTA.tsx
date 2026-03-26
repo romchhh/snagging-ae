@@ -64,13 +64,31 @@ export default function AdditionalAndCTA() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to right, rgba(10,9,8,0.85) 0%, rgba(10,9,8,0.5) 50%, rgba(10,9,8,0.85) 100%)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center',
-          padding: '40px clamp(1rem, 4vw, 2.5rem) clamp(56px, 11vw, 96px)',
-        }}>
-
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1,
+            background: 'linear-gradient(to right, rgba(10,9,8,0.85) 0%, rgba(10,9,8,0.5) 50%, rgba(10,9,8,0.85) 100%)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          className="sample-banner-content"
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
+            paddingLeft: 'clamp(1rem, 4vw, 2.5rem)',
+            paddingRight: 'clamp(1rem, 4vw, 2.5rem)',
+            paddingBottom: 'clamp(24px, 5vw, 40px)',
+          }}
+        >
           <h2
             style={{
               fontFamily: 'var(--font-playfair)',
@@ -90,6 +108,7 @@ export default function AdditionalAndCTA() {
             Get a real sample report before you commit. No obligation.
           </p>
           <button
+            className="sample-banner-btn-overlay"
             type="button"
             onClick={() => window.dispatchEvent(new Event('open-booking-modal'))}
             style={{
@@ -117,6 +136,35 @@ export default function AdditionalAndCTA() {
             Send Me the Sample →
           </button>
         </div>
+      </div>
+      <div className="sample-banner-mobile-cta">
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new Event('open-booking-modal'))}
+          style={{
+            background: 'var(--brand-yellow)',
+            color: 'var(--ink)',
+            fontFamily: 'var(--font-jost)',
+            fontSize: 'calc(11px * var(--text-scale))',
+            fontWeight: 700,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '18px 52px',
+            transition: 'background 0.2s, transform 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--brand-yellow-hover)'
+            e.currentTarget.style.transform = 'translateY(-2px)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'var(--brand-yellow)'
+            e.currentTarget.style.transform = 'translateY(0)'
+          }}
+        >
+          Send Me the Sample →
+        </button>
       </div>
 
       {/* ADDITIONAL SERVICES */}
@@ -213,6 +261,28 @@ export default function AdditionalAndCTA() {
       </section>
 
       <style>{`
+        .sample-banner-content {
+          top: 38%;
+        }
+        .sample-banner-mobile-cta {
+          display: flex;
+          justify-content: center;
+          padding: 18px 16px 0;
+          background: #fff;
+        }
+        @media (min-width: 1024px) {
+          .sample-banner-content {
+            top: 33%;
+          }
+          .sample-banner-mobile-cta {
+            display: none;
+          }
+        }
+        @media (max-width: 1023px) {
+          .sample-banner-btn-overlay {
+            display: none;
+          }
+        }
         .reveal:hover .add-card-title,
         div:hover > .add-card-title { color: #fff !important; }
         div:hover > .add-card-desc { color: rgba(255,255,255,0.55) !important; }

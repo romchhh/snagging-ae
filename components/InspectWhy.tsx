@@ -111,10 +111,11 @@ export default function InspectWhy() {
             </p>
           </div>
 
-          <ul className="reveal d2 mx-auto grid w-full max-w-4xl list-none grid-cols-2 gap-x-4 sm:gap-x-10">
+          <ul className="reveal d2 mx-auto grid w-full max-w-4xl list-none grid-cols-2 gap-x-4 sm:gap-x-10 md:pl-[20%] lg:pl-[35%] xl:pl-[50%]">
               {items.map((item) => (
                 <li
                   key={item}
+                  className="justify-start text-left"
                   style={{
                     padding: '14px 0',
                     borderBottom: '1px solid var(--stone)',
@@ -122,10 +123,8 @@ export default function InspectWhy() {
                     color: 'var(--ink)',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
                     gap: '12px',
                     fontWeight: 400,
-                    textAlign: 'center',
                   }}
                 >
                   <span

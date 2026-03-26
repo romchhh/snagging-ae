@@ -1,14 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
 
-const defects = [
-  { label: 'Bathroom ceiling — water stain (leak)', sev: 'HIGH', color: '#DC3C28', bg: 'rgba(220,60,40,0.09)' },
-  { label: 'Living room — paint cracks at wall joint', sev: 'MED', color: '#B07D00', bg: 'rgba(249,220,10,0.15)' },
-  { label: 'AC unit — filter missing', sev: 'MED', color: '#B07D00', bg: 'rgba(249,220,10,0.15)' },
-  { label: 'Main entrance door — seal incomplete', sev: 'LOW', color: '#52A852', bg: 'rgba(82,168,82,0.09)' },
-  { label: 'Kitchen cabinet — alignment issue', sev: 'LOW', color: '#52A852', bg: 'rgba(82,168,82,0.09)' },
-]
-
 const steps = [
   { n: '1', title: 'Book', desc: 'Fill the form or WhatsApp us. We confirm availability.' },
   { n: '2', title: 'Engineers Visit', desc: 'Qualified engineers arrive at the agreed time.' },
@@ -69,14 +61,14 @@ export default function ReportProcess() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="mx-auto max-w-xl">
             <ul
               className="reveal d3 w-full"
               style={{
                 listStyle: 'none',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
+                alignItems: 'stretch',
                 gap: '16px',
               }}
             >
@@ -87,7 +79,7 @@ export default function ReportProcess() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '16px',
+                    gap: '8px',
                     fontSize: 'calc(16px * var(--text-scale))',
                     color: '#fff',
                     textAlign: 'center',
@@ -97,185 +89,19 @@ export default function ReportProcess() {
                   <span
                     aria-hidden
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      display: 'inline-block',
                       fontSize: 'calc(16px * var(--text-scale))',
-                      lineHeight: 1,
+                      lineHeight: 1.35,
                       color: 'var(--brand-yellow)',
                       fontWeight: 700,
-                      flexShrink: 0,
                     }}
                   >
                     ✓
                   </span>
-                  {item}
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
-
-            {/* REPORT MOCKUP */}
-            <div
-              className="reveal d4"
-              style={{
-                background: '#fff',
-                padding: 'clamp(28px, 4vw, 44px)',
-                boxShadow: '0 32px 80px rgba(0,0,0,0.3)',
-                position: 'relative',
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '18px',
-                  right: '18px',
-                  fontFamily: 'var(--font-jost)',
-                  fontSize: 'calc(8px * var(--text-scale))',
-                  letterSpacing: '0.22em',
-                  color: 'var(--muted)',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Inspection Report
-              </div>
-
-              <div
-                style={{
-                  borderBottom: '1px solid var(--stone)',
-                  paddingBottom: '24px',
-                  marginBottom: '24px',
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: 'var(--font-playfair)',
-                    fontSize: 'calc(20px * var(--text-scale))',
-                    color: 'var(--ink)',
-                    marginBottom: '4px',
-                  }}
-                >
-                  Property Inspection Report
-                </div>
-                <div style={{ fontSize: 'calc(12px * var(--text-scale))', color: 'var(--muted)' }}>
-                  Downtown Dubai · Apartment 2404 · March 2026
-                </div>
-              </div>
-
-              <div
-                role="list"
-                style={{
-                  border: '1px solid var(--stone)',
-                  borderRadius: '2px',
-                  background: 'var(--cream)',
-                  overflow: 'hidden',
-                }}
-              >
-                {defects.map((d, i) => (
-                  <div
-                    key={d.label}
-                    role="listitem"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '12px',
-                      padding: '12px 14px',
-                      borderBottom: i < defects.length - 1 ? '1px solid var(--stone)' : 'none',
-                      background: '#fff',
-                    }}
-                  >
-                    <span
-                      aria-hidden
-                      style={{
-                        width: '18px',
-                        height: '18px',
-                        flexShrink: 0,
-                        marginTop: '2px',
-                        border: '1.5px solid var(--ink)',
-                        borderRadius: '3px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '11px',
-                        fontWeight: 700,
-                        lineHeight: 1,
-                        color: 'var(--ink)',
-                        fontFamily: 'var(--font-jost)',
-                      }}
-                    >
-                      ✓
-                    </span>
-                    <span
-                      style={{
-                        flex: 1,
-                        minWidth: 0,
-                        fontSize: 'calc(13px * var(--text-scale))',
-                        color: 'var(--ink-2)',
-                        lineHeight: 1.45,
-                        paddingTop: '1px',
-                      }}
-                    >
-                      {d.label}
-                    </span>
-                    <span
-                      style={{
-                        flexShrink: 0,
-                        fontFamily: 'var(--font-jost)',
-                        fontSize: 'calc(9px * var(--text-scale))',
-                        letterSpacing: '0.1em',
-                        padding: '5px 10px',
-                        fontWeight: 700,
-                        background: d.bg,
-                        color: d.color,
-                        alignSelf: 'flex-start',
-                      }}
-                    >
-                      {d.sev}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ marginTop: '28px', paddingTop: '20px', borderTop: '1px solid var(--stone)' }}>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-jost)',
-                    fontSize: 'calc(10px * var(--text-scale))',
-                    letterSpacing: '0.14em',
-                    textTransform: 'uppercase',
-                    color: 'var(--muted)',
-                    marginBottom: '8px',
-                    fontWeight: 600,
-                  }}
-                >
-                  Estimated Repair Cost
-                </div>
-                <div>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-playfair)',
-                      fontSize: 'calc(44px * var(--text-scale))',
-                      color: 'var(--ink)',
-                      fontWeight: 400,
-                      lineHeight: 1,
-                    }}
-                  >
-                    AED 4,200
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-jost)',
-                      fontSize: 'calc(12px * var(--text-scale))',
-                      color: 'var(--muted)',
-                      marginTop: '8px',
-                      letterSpacing: '0.06em',
-                      fontWeight: 400,
-                    }}
-                  >
-                    UAE Dirham (AED)
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

@@ -57,6 +57,9 @@ export default function About() {
                 lineHeight: 1.9,
                 marginBottom: '20px',
                 fontWeight: 300,
+                textAlign: 'justify',
+                textJustify: 'inter-word',
+                hyphens: 'auto',
               }}
             >
               We are a UAE-based snagging company focused on engineering-level property inspections. Our team consists of qualified, multilingual engineers with real construction experience.
@@ -69,6 +72,9 @@ export default function About() {
                 lineHeight: 1.9,
                 marginBottom: '20px',
                 fontWeight: 300,
+                textAlign: 'justify',
+                textJustify: 'inter-word',
+                hyphens: 'auto',
               }}
             >
               With over 7 years in the market, we have completed{' '}
@@ -83,6 +89,9 @@ export default function About() {
                 lineHeight: 1.9,
                 marginBottom: '52px',
                 fontWeight: 300,
+                textAlign: 'justify',
+                textJustify: 'inter-word',
+                hyphens: 'auto',
               }}
             >
               We help clients protect their investments through independent and professional assessments — so you always know exactly what you own.
