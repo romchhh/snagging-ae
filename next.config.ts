@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
         hostname: 'miro.medium.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.irishtimes.com',
+        pathname: '/**',
+      },
     ],
   },
 };
