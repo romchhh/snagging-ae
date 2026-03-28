@@ -58,8 +58,8 @@ export default function AdditionalAndCTA() {
       {/* FULL WIDTH PHOTO BANNER */}
       <div className="snagging-sample-banner">
         <Image
-          src="/snagging.png"
-          alt="Property snagging inspection in the UAE"
+          src="/7cb7ab2a8362894eb44ff08038eb4656.jpg"
+          alt="Sample snagging report preview"
           fill
           className="object-cover object-center"
           sizes="100vw"
@@ -69,7 +69,8 @@ export default function AdditionalAndCTA() {
             position: 'absolute',
             inset: 0,
             zIndex: 1,
-            background: 'linear-gradient(to right, rgba(10,9,8,0.85) 0%, rgba(10,9,8,0.5) 50%, rgba(10,9,8,0.85) 100%)',
+            background:
+              'radial-gradient(ellipse 85% 75% at 50% 50%, rgba(10,9,8,0.42) 0%, rgba(10,9,8,0.78) 55%, rgba(6,5,4,0.9) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -77,16 +78,15 @@ export default function AdditionalAndCTA() {
           className="sample-banner-content"
           style={{
             position: 'absolute',
-            left: 0,
-            right: 0,
+            inset: 0,
             zIndex: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'center',
             textAlign: 'center',
-            paddingLeft: 'clamp(1rem, 4vw, 2.5rem)',
-            paddingRight: 'clamp(1rem, 4vw, 2.5rem)',
-            paddingBottom: 'clamp(24px, 5vw, 40px)',
+            padding: 'clamp(28px, 6vw, 56px) clamp(1rem, 4vw, 2.5rem)',
+            boxSizing: 'border-box',
           }}
         >
           <h2
@@ -96,19 +96,28 @@ export default function AdditionalAndCTA() {
               fontWeight: 400,
               color: '#fff',
               lineHeight: 1.08,
-              marginBottom: '20px',
+              margin: '0 0 clamp(16px, 2.5vw, 22px)',
               letterSpacing: '-0.01em',
+              maxWidth: 'min(34ch, 100%)',
             }}
           >
             See What a Real Snagging
             <br />
             <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Report Looks Like</em>
           </h2>
-          <p style={{ fontSize: 'calc(16px * var(--text-scale))', color: 'rgba(255,255,255,0.65)', marginBottom: '36px', maxWidth: '440px', lineHeight: 1.75 }}>
+          <p
+            style={{
+              fontSize: 'calc(16px * var(--text-scale))',
+              color: 'rgba(255,255,255,0.68)',
+              margin: '0 0 clamp(28px, 4vw, 40px)',
+              maxWidth: 'min(28rem, 100%)',
+              lineHeight: 1.75,
+            }}
+          >
             Get a real sample report before you commit. No obligation.
           </p>
           <button
-            className="sample-banner-btn-overlay"
+            className="sample-banner-btn-overlay w-full max-w-[min(20rem,100%)] sm:max-w-none sm:w-auto"
             type="button"
             onClick={() => window.dispatchEvent(new Event('open-booking-modal'))}
             style={{
@@ -121,7 +130,7 @@ export default function AdditionalAndCTA() {
               textTransform: 'uppercase',
               border: 'none',
               cursor: 'pointer',
-              padding: '18px 52px',
+              padding: 'clamp(14px, 3vw, 18px) clamp(22px, 7vw, 52px)',
               transition: 'background 0.2s, transform 0.2s',
             }}
             onMouseEnter={(e) => {
@@ -136,35 +145,6 @@ export default function AdditionalAndCTA() {
             Send Me the Sample →
           </button>
         </div>
-      </div>
-      <div className="sample-banner-mobile-cta">
-        <button
-          type="button"
-          onClick={() => window.dispatchEvent(new Event('open-booking-modal'))}
-          style={{
-            background: 'var(--brand-yellow)',
-            color: 'var(--ink)',
-            fontFamily: 'var(--font-jost)',
-            fontSize: 'calc(11px * var(--text-scale))',
-            fontWeight: 700,
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '18px 52px',
-            transition: 'background 0.2s, transform 0.2s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'var(--brand-yellow-hover)'
-            e.currentTarget.style.transform = 'translateY(-2px)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'var(--brand-yellow)'
-            e.currentTarget.style.transform = 'translateY(0)'
-          }}
-        >
-          Send Me the Sample →
-        </button>
       </div>
 
       {/* ADDITIONAL SERVICES */}
@@ -261,28 +241,6 @@ export default function AdditionalAndCTA() {
       </section>
 
       <style>{`
-        .sample-banner-content {
-          top: 38%;
-        }
-        .sample-banner-mobile-cta {
-          display: flex;
-          justify-content: center;
-          padding: 18px 16px 0;
-          background: #fff;
-        }
-        @media (min-width: 1024px) {
-          .sample-banner-content {
-            top: 33%;
-          }
-          .sample-banner-mobile-cta {
-            display: none;
-          }
-        }
-        @media (max-width: 1023px) {
-          .sample-banner-btn-overlay {
-            display: none;
-          }
-        }
         .reveal:hover .add-card-title,
         div:hover > .add-card-title { color: #fff !important; }
         div:hover > .add-card-desc { color: rgba(255,255,255,0.55) !important; }

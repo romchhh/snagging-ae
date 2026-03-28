@@ -94,7 +94,10 @@ export default function Services() {
     <section id="services" ref={ref} className="section-y" style={{ background: 'var(--cream)' }}>
       <div className="layout-container">
         {/* HEADER */}
-        <div className="flex flex-col items-center text-center mb-16 gap-5">
+        <div
+          className="flex flex-col items-center text-center gap-6"
+          style={{ marginBottom: 'clamp(48px, 8vw, 80px)' }}
+        >
           <h2
             className="reveal d1"
             style={{

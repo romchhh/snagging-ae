@@ -3,176 +3,155 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+const navItems = ['Services', 'Process', 'About', 'FAQ', 'Contact'] as const
+
+const linkMuted = {
+  fontFamily: 'var(--font-jost)' as const,
+  fontSize: 'calc(13px * var(--text-scale))' as const,
+  color: 'rgba(255,255,255,0.42)',
+  textDecoration: 'none' as const,
+  transition: 'color 0.2s',
+}
+
 export default function Footer() {
   return (
     <footer
       className="page-below-hero"
       style={{
         background: '#111110',
-        padding: 'clamp(3rem, 7vw, 4.5rem) 0 clamp(1.5rem, 4vw, 2rem)',
+        paddingTop: 'clamp(2.75rem, 6vw, 4.5rem)',
+        paddingBottom: 'clamp(2rem, 4vw, 3rem)',
         borderTop: '1px solid rgba(255,255,255,0.05)',
       }}
     >
-      <div className="layout-container">
-        {/* BRAND — centered */}
-        <div
-          className="flex flex-col items-center text-center mb-12"
-          style={{ width: '100%' }}
-        >
-          <Link
-            href="/"
-            style={{ display: 'block', marginBottom: '16px', lineHeight: 0 }}
-          >
+      <div
+        className="layout-container flex flex-col items-center text-center"
+        style={{ gap: 'clamp(1.75rem, 4vw, 2.25rem)' }}
+      >
+        {/* Brand */}
+        <div className="flex flex-col items-center" style={{ gap: '0.75rem' }}>
+          <Link href="/" style={{ display: 'block', lineHeight: 0 }}>
             <Image
               src="/yellow_favicon.png"
               alt="SnaggingServices.ae"
               width={160}
               height={160}
-              sizes="(max-width: 768px) 112px, 144px"
+              sizes="(max-width: 480px) 88px, 112px"
               style={{
-                width: 'clamp(88px, 14vw, 144px)',
+                width: 'clamp(80px, 18vw, 112px)',
                 height: 'auto',
                 objectFit: 'contain',
               }}
             />
           </Link>
-          <div
+          <p
             style={{
               fontFamily: 'var(--font-jost)',
               fontSize: 'calc(12px * var(--text-scale))',
-              color: 'rgba(255,255,255,0.3)',
+              color: 'rgba(255,255,255,0.28)',
               letterSpacing: '0.04em',
-              maxWidth: '280px',
               lineHeight: 1.6,
+              maxWidth: '22rem',
+              margin: 0,
             }}
           >
             UAE&rsquo;s Leading Property Inspection Company
-          </div>
+          </p>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12 md:gap-8 mb-12 max-w-3xl mx-auto w-full text-center md:text-left">
-          {/* NAV */}
-          <div className="flex flex-col gap-3 items-center md:items-start">
-            <div
-              style={{
-                fontFamily: 'var(--font-jost)',
-                fontSize: 'calc(10px * var(--text-scale))',
-                letterSpacing: '0.24em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.25)',
-                fontWeight: 700,
-                marginBottom: '4px',
-              }}
-            >
-              Navigation
-            </div>
-            <div
-              className="flex flex-wrap justify-center md:justify-start"
-              style={{
-                columnGap: 'clamp(1.75rem, 4.5vw, 3rem)',
-                rowGap: '0.85rem',
-              }}
-            >
-              {['Services', 'Process', 'About', 'FAQ', 'Contact'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  style={{
-                    fontFamily: 'var(--font-jost)',
-                    fontSize: 'calc(13px * var(--text-scale))',
-                    letterSpacing: '0.06em',
-                    color: 'rgba(255,255,255,0.45)',
-                    textDecoration: 'none',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* CONTACT */}
-          <div className="flex flex-col gap-3 items-center md:items-start">
-            <div
-              style={{
-                fontFamily: 'var(--font-jost)',
-                fontSize: 'calc(10px * var(--text-scale))',
-                letterSpacing: '0.24em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.25)',
-                fontWeight: 700,
-                marginBottom: '4px',
-              }}
-            >
-              Contact
-            </div>
-            {[
-              { label: '+971 00 000 0000', href: 'tel:+971000000000' },
-              { label: 'info@snaggingservices.ae', href: 'mailto:info@snaggingservices.ae' },
-            ].map((c) => (
-              <a
-                key={c.label}
-                href={c.href}
-                style={{
-                  fontFamily: 'var(--font-jost)',
-                  fontSize: 'calc(13px * var(--text-scale))',
-                  color: 'rgba(255,255,255,0.45)',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
-              >
-                {c.label}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* BOTTOM */}
-        <div
+        {/* Nav — один рядок */}
+        <nav
+          className="flex w-full max-w-full flex-nowrap items-center justify-center overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           style={{
-            borderTop: '1px solid rgba(255,255,255,0.06)',
-            paddingTop: '24px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '20px',
+            gap: 'clamp(0.65rem, 2.8vw, 1.35rem)',
+            paddingLeft: 'clamp(0.5rem, 2vw, 0)',
+            paddingRight: 'clamp(0.5rem, 2vw, 0)',
+            paddingBottom: '2px',
           }}
+          aria-label="Footer"
         >
-          <div
+          {navItems.map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              style={{
+                ...linkMuted,
+                letterSpacing: '0.05em',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.42)')}
+            >
+              {item}
+            </a>
+          ))}
+        </nav>
+
+        {/* Contact */}
+        <div className="flex flex-col items-center" style={{ gap: '0.5rem' }}>
+          <span
             style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: '12px',
-              width: '100%',
+              fontFamily: 'var(--font-jost)',
+              fontSize: 'calc(10px * var(--text-scale))',
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.22)',
+              fontWeight: 700,
             }}
           >
-            <div
-              style={{
-                fontFamily: 'var(--font-jost)',
-                fontSize: 'calc(12px * var(--text-scale))',
-                color: 'rgba(255,255,255,0.2)',
-              }}
-            >
-              &copy; 2026 SnaggingServices.ae — All Rights Reserved
-            </div>
-            <div
-              style={{
-                fontFamily: 'var(--font-jost)',
-                fontSize: 'calc(11px * var(--text-scale))',
-                color: 'rgba(255,255,255,0.2)',
-                letterSpacing: '0.1em',
-              }}
-            >
-              Dubai · Abu Dhabi · All Emirates
-            </div>
-          </div>
+            Contact
+          </span>
+          <a
+            href="tel:+971000000000"
+            style={linkMuted}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.42)')}
+          >
+            +971 00 000 0000
+          </a>
+          <a
+            href="mailto:info@snaggingservices.ae"
+            style={linkMuted}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.42)')}
+          >
+            info@snaggingservices.ae
+          </a>
+        </div>
+
+        <div
+          className="w-full max-w-md"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        />
+
+        {/* Legal + meta */}
+        <div
+          className="flex flex-col items-center"
+          style={{ gap: '0.65rem' }}
+        >
+          <p
+            style={{
+              fontFamily: 'var(--font-jost)',
+              fontSize: 'calc(11px * var(--text-scale))',
+              color: 'rgba(255,255,255,0.18)',
+              margin: 0,
+              lineHeight: 1.5,
+            }}
+          >
+            &copy; 2026 SnaggingServices.ae — All Rights Reserved
+          </p>
+          <p
+            style={{
+              fontFamily: 'var(--font-jost)',
+              fontSize: 'calc(11px * var(--text-scale))',
+              color: 'rgba(255,255,255,0.18)',
+              letterSpacing: '0.08em',
+              margin: 0,
+            }}
+          >
+            Dubai · Abu Dhabi · All Emirates
+          </p>
           <a
             href="https://telebots.site/en"
             target="_blank"
@@ -182,10 +161,11 @@ export default function Footer() {
               fontSize: 'calc(11px * var(--text-scale))',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.35)',
+              color: 'rgba(255,255,255,0.32)',
               textDecoration: 'none',
-              padding: '8px 16px',
-              border: '1px solid rgba(255,255,255,0.12)',
+              padding: '7px 16px',
+              marginTop: '0.25rem',
+              border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '999px',
               background: 'rgba(255,255,255,0.03)',
               transition: 'color 0.2s, border-color 0.2s, background 0.2s',
@@ -196,8 +176,8 @@ export default function Footer() {
               e.currentTarget.style.background = 'rgba(249, 220, 10, 0.06)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'
+              e.currentTarget.style.color = 'rgba(255,255,255,0.32)'
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
               e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
             }}
           >

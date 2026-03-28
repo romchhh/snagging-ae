@@ -39,7 +39,12 @@ export default function FAQ() {
       }}
     >
       <div className="layout-container">
-        <div className="mb-16" style={{ textAlign: 'center' }}>
+        <div
+          style={{
+            textAlign: 'center',
+            marginBottom: 'clamp(48px, 8vw, 80px)',
+          }}
+        >
           <h2
             className="reveal d1"
             style={{
@@ -52,7 +57,7 @@ export default function FAQ() {
             }}
           >
             Frequently Asked{' '}
-            <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Questions</em>
+            <span style={{ color: 'var(--brand-yellow)' }}>Questions</span>
           </h2>
         </div>
 

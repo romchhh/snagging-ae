@@ -28,7 +28,7 @@ export default function ReportProcess() {
       {/* REPORT SECTION */}
       <section id="report" className="section-y" style={{ background: 'var(--ink)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="layout-container">
-          <div className="mb-12 flex flex-col items-center text-center lg:mb-16">
+          <div className="mb-0 flex flex-col items-center text-center">
             <h2
               className="reveal d1"
               style={{
@@ -61,7 +61,10 @@ export default function ReportProcess() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-xl">
+          <div
+            className="mx-auto max-w-xl"
+            style={{ marginTop: 'clamp(48px, 8vw, 80px)' }}
+          >
             <ul
               className="reveal d3 w-full"
               style={{
@@ -69,7 +72,7 @@ export default function ReportProcess() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'stretch',
-                gap: '16px',
+                gap: 'clamp(18px, 2.5vw, 22px)',
               }}
             >
               {['Full defect list with photos', 'Severity and priority levels', 'Repair cost estimation', 'Expert recommendations'].map((item) => (
@@ -79,8 +82,8 @@ export default function ReportProcess() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '8px',
-                    fontSize: 'calc(16px * var(--text-scale))',
+                    gap: '10px',
+                    fontSize: 'clamp(calc(17px * var(--text-scale)), 2.1vw, calc(22px * var(--text-scale)))',
                     color: '#fff',
                     textAlign: 'center',
                     width: '100%',
@@ -90,7 +93,7 @@ export default function ReportProcess() {
                     aria-hidden
                     style={{
                       display: 'inline-block',
-                      fontSize: 'calc(16px * var(--text-scale))',
+                      fontSize: 'clamp(calc(18px * var(--text-scale)), 2.2vw, calc(23px * var(--text-scale)))',
                       lineHeight: 1.35,
                       color: 'var(--brand-yellow)',
                       fontWeight: 700,

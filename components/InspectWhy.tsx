@@ -167,8 +167,7 @@ export default function InspectWhy() {
               className="reveal d1 min-w-0 w-full max-w-full"
               style={{
                 fontFamily: 'var(--font-playfair)',
-                fontSize:
-                  'clamp(calc(26px * var(--text-scale)), calc(0.35rem + 5.2vw), calc(64px * var(--text-scale)))',
+                fontSize: 'clamp(calc(40px * var(--text-scale)), 4vw, calc(62px * var(--text-scale)))',
                 fontWeight: 400,
                 color: 'var(--ink)',
                 lineHeight: 1.12,

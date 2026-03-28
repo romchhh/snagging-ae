@@ -71,8 +71,8 @@ body {
 .snagging-sample-banner {
   position: relative;
   overflow: hidden;
-  min-height: 280px;
-  height: clamp(280px, 45vh, 420px);
+  min-height: 380px;
+  height: clamp(380px, 56vh, 480px);
 }
 
 @media (min-width: 768px) {
