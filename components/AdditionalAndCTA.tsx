@@ -58,7 +58,7 @@ export default function AdditionalAndCTA() {
       {/* FULL WIDTH PHOTO BANNER */}
       <div className="snagging-sample-banner">
         <Image
-          src="/7cb7ab2a8362894eb44ff08038eb4656.jpg"
+          src="/report.png"
           alt="Sample snagging report preview"
           fill
           className="object-cover object-center"
@@ -180,19 +180,30 @@ export default function AdditionalAndCTA() {
               Additional{' '}
               <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Services</em>
             </h2>
-            <p
-              className="reveal d2"
-              style={{
-                fontSize: 'calc(17px * var(--text-scale))',
-                color: 'var(--ink-2)',
-                maxWidth: '520px',
-                lineHeight: 1.85,
-                fontWeight: 300,
-                margin: 0,
-              }}
-            >
-              POA and handover support, property management, Golden Visa, and legal advisory — so you are covered long after the inspection.
-            </p>
+            <div className="reveal d2" style={{ maxWidth: '520px' }}>
+              <p
+                style={{
+                  fontSize: 'calc(17px * var(--text-scale))',
+                  color: 'var(--ink-2)',
+                  lineHeight: 1.85,
+                  fontWeight: 300,
+                  margin: '0 0 1rem 0',
+                }}
+              >
+                A complete suite of services designed to take care of every aspect of your property.
+              </p>
+              <p
+                style={{
+                  fontSize: 'calc(17px * var(--text-scale))',
+                  color: 'var(--ink-2)',
+                  lineHeight: 1.85,
+                  fontWeight: 300,
+                  margin: 0,
+                }}
+              >
+                So you don&rsquo;t have to worry about anything — before, during, or after the inspection.
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 gap-2">

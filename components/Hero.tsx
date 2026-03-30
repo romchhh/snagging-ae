@@ -28,7 +28,7 @@ export default function Hero() {
           alt="Property inspection and snagging"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-top"
           sizes="100vw"
           style={{ filter: 'brightness(0.45)' }}
         />
@@ -108,7 +108,9 @@ export default function Hero() {
               marginBottom: '32px',
             }}
           >
-            Identify every defect before handover or purchase — protect your investment with certified engineering inspections.
+            Identify every defect before handover or purchase —{' '}
+            <br />
+            Protect your investment with certified engineering inspections.
           </p>
 
           {/* Stats + CTAs — pulled up as one cluster */}

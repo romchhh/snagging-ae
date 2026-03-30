@@ -10,6 +10,14 @@ const faqs = [
   { q: 'Do I need a POA for snagging?', a: 'For snagging only — no. An authorization letter is usually sufficient (requirements vary by developer).' },
   { q: 'When will I receive the report?', a: 'Within 24–48 hours after the inspection is completed. For urgent cases, contact us for priority delivery.' },
   { q: 'Do you work across UAE?', a: 'Yes — we operate in Dubai, Abu Dhabi, and all Emirates. Distance is not an issue.' },
+  {
+    q: 'What is a Defect Liability Period (DLP) inspection?',
+    a: 'A DLP inspection is carried out before your developer\'s warranty expires.\nIt helps identify and document any remaining defects so they can be officially reported and fixed at the developer\'s cost.',
+  },
+  {
+    q: 'Why is it important to do a DLP inspection before the warranty ends?',
+    a: 'Once the defect liability period expires, you become fully responsible for any repairs.\nA timely inspection ensures all issues are identified and claimed while the developer is still obligated to fix them — saving you significant time and costs.',
+  },
 ]
 
 export default function FAQ() {
@@ -96,6 +104,7 @@ export default function FAQ() {
                     fontSize: 'calc(15px * var(--text-scale))',
                     color: 'var(--muted)',
                     lineHeight: 1.8,
+                    whiteSpace: 'pre-line',
                   }}
                 >
                   {f.a}

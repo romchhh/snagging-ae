@@ -1,13 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
-
-const items = [
-  'Structure & Finishing', 'Electrical Systems', 'Plumbing',
-  'HVAC & Air Conditioning', 'Safety Systems', 'Smart Systems',
-  'Doors, Windows & Carpentry', 'Floors, Walls & Ceilings',
-  'Bathrooms & Kitchens', 'External Areas',
-  'Appliances & Fixtures', 'Roof & Waterproofing',
-]
+import Image from 'next/image'
 
 const whyCards = [
   {
@@ -111,35 +104,16 @@ export default function InspectWhy() {
             </p>
           </div>
 
-          <ul className="reveal d2 mx-auto grid w-full max-w-4xl list-none grid-cols-2 gap-x-4 sm:gap-x-10 md:pl-[20%] lg:pl-[35%] xl:pl-[50%]">
-              {items.map((item) => (
-                <li
-                  key={item}
-                  className="justify-start text-left"
-                  style={{
-                    padding: '14px 0',
-                    borderBottom: '1px solid var(--stone)',
-                    fontSize: 'calc(15px * var(--text-scale))',
-                    color: 'var(--ink)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    fontWeight: 400,
-                  }}
-                >
-                  <span
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      background: 'var(--brand-yellow)',
-                      flexShrink: 0,
-                      display: 'block',
-                    }}
-                  />
-                  {item}
-                </li>
-              ))}
-          </ul>
+          <div className="reveal d2 flex w-full justify-center">
+            <Image
+              src="/supplies.png"
+              alt="Professional tools and equipment used for property inspection"
+              width={1536}
+              height={1024}
+              className="h-auto w-full max-w-[calc(100%+2*var(--gutter-x))] -mx-[var(--gutter-x)] object-contain md:mx-0 md:max-w-3xl"
+              sizes="(max-width: 767px) 100vw, 768px"
+            />
+          </div>
         </div>
       </section>
 

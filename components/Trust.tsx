@@ -69,8 +69,9 @@ export default function Trust() {
               textAlign: 'center',
             }}
           >
-            Real Engineers.{' '}
-            <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Real Insights.</em>
+            Real Engineers.
+            <br />
+            <em style={{ color: 'var(--brand-yellow)', fontStyle: 'italic' }}>Real insights.</em>
           </h2>
 
           <p
@@ -103,7 +104,7 @@ export default function Trust() {
             {/* MAIN IMAGE */}
             <div style={{ position: 'relative', height: '480px' }}>
               <Image
-                src="https://www.irishtimes.com/resizer/v2/4L46ISZNL5RJH6HJIWHCKF4YOA.jpg?auth=f3368863911dea6181419dcf86955877660e99be84ab1a28c0eb85a2d9cda0dd&smart=true&width=1600&height=900"
+                src="/certificated.png"
                 alt="Engineer inspecting property"
                 fill
                 className="object-cover"

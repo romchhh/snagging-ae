@@ -75,7 +75,13 @@ export default function ReportProcess() {
                 gap: 'clamp(18px, 2.5vw, 22px)',
               }}
             >
-              {['Full defect list with photos', 'Severity and priority levels', 'Repair cost estimation', 'Expert recommendations'].map((item) => (
+              {[
+                'Full defect list with photos',
+                'Detailed video walkthrough of your unit',
+                'Severity and priority levels',
+                'Repair cost estimation',
+                'Expert recommendations',
+              ].map((item) => (
                 <li
                   key={item}
                   style={{
