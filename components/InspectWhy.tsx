@@ -105,15 +105,27 @@ export default function InspectWhy() {
           </div>
 
           <div className="reveal d2 flex w-full justify-center">
-            <Image
-              src="/supplies.png"
-              alt="Professional tools and equipment used for property inspection"
-              width={1536}
-              height={1024}
-              className="h-auto w-full max-w-[calc(100%+2*var(--gutter-x))] -mx-[var(--gutter-x)] object-contain md:mx-0 md:max-w-3xl"
-              sizes="(max-width: 767px) 100vw, 768px"
-            />
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <div
+                className="supplies-img-wrap"
+                style={{ position: 'relative', width: '95%' }}
+              >
+                <Image
+                  src="/supplies.png"
+                  alt="Professional tools and equipment used for property inspection"
+                  width={1536}
+                  height={1024}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  sizes="(max-width: 767px) 95vw, 28vw"
+                />
+              </div>
+            </div>
           </div>
+          <style>{`
+            @media (min-width: 768px) {
+              .supplies-img-wrap { width: 70% !important; }
+            }
+          `}</style>
         </div>
       </section>
 
