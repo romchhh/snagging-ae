@@ -8,6 +8,7 @@ import {
   PROPERTY_TYPE_SUGGESTIONS,
 } from '@/lib/input-masks'
 import { lockBodyScroll, unlockBodyScroll } from '@/lib/scroll-lock'
+import { SITE_PHONE_DISPLAY } from '@/lib/site-config'
 
 export default function BookingModal() {
   const [open, setOpen] = useState(false)
@@ -236,7 +237,7 @@ export default function BookingModal() {
                   type="tel"
                   name="phone"
                   autoComplete="tel"
-                  placeholder="+971 00 000 0000"
+                  placeholder={SITE_PHONE_DISPLAY}
                   value={phone}
                   onChange={(e) => setPhone(maskUAEPhone(e.target.value))}
                   inputMode="tel"

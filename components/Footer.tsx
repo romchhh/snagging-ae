@@ -2,6 +2,14 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import {
+  SITE_EMAIL,
+  SITE_EMAIL_MAILTO,
+  SITE_INSTAGRAM_URL,
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_TEL,
+  SITE_WHATSAPP_URL,
+} from '@/lib/site-config'
 
 const navItems = ['Services', 'Process', 'About', 'FAQ', 'Contact'] as const
 
@@ -103,20 +111,40 @@ export default function Footer() {
             Contact
           </span>
           <a
-            href="tel:+971000000000"
+            href={SITE_PHONE_TEL}
             style={linkMuted}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.42)')}
           >
-            +971 00 000 0000
+            {SITE_PHONE_DISPLAY}
           </a>
           <a
-            href="mailto:info@snaggingservices.ae"
+            href={SITE_EMAIL_MAILTO}
             style={linkMuted}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.42)')}
           >
-            info@snaggingservices.ae
+            {SITE_EMAIL}
+          </a>
+          <a
+            href={SITE_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={linkMuted}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.42)')}
+          >
+            WhatsApp
+          </a>
+          <a
+            href={SITE_INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={linkMuted}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-yellow)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.42)')}
+          >
+            Instagram
           </a>
         </div>
 

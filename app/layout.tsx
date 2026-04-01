@@ -2,7 +2,14 @@ import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Jost } from 'next/font/google'
 import JsonLd from '@/components/JsonLd'
 import BookingModal from '@/components/BookingModal'
-import { defaultDescription, SITE_NAME, SITE_TAGLINE, SITE_URL } from '@/lib/site-config'
+import {
+  defaultDescription,
+  SITE_EMAIL,
+  SITE_NAME,
+  SITE_PHONE_E164,
+  SITE_TAGLINE,
+  SITE_URL,
+} from '@/lib/site-config'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -44,7 +51,11 @@ export const metadata: Metadata = {
     'pre-handover snagging',
     'commercial property inspection Dubai',
     'independent snagging report',
+    'SnaggingServices.ae',
+    'Flavus AE',
+    'engineering inspection UAE',
   ],
+  referrer: 'origin-when-cross-origin',
   formatDetection: {
     email: false,
     address: false,
@@ -69,6 +80,8 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: titleDefault,
     description: defaultDescription,
+    emails: [SITE_EMAIL],
+    phoneNumbers: [SITE_PHONE_E164],
     images: [
       {
         url: '/hero.jpg',
@@ -91,6 +104,11 @@ export const metadata: Metadata = {
       'en-AE': '/',
       en: '/',
     },
+  },
+  other: {
+    'geo.region': 'AE',
+    'geo.placename': 'Dubai',
+    ICBM: '25.2048, 55.2708',
   },
   icons: {
     icon: [{ url: '/favicon.png', type: 'image/png' }],

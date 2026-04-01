@@ -1,9 +1,11 @@
 'use client'
 
+import { SITE_WHATSAPP_URL } from '@/lib/site-config'
+
 export default function WhatsAppFloat() {
   return (
     <a
-      href="https://wa.me/971000000000"
+      href={SITE_WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"

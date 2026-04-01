@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import { SITE_WHATSAPP_URL } from '@/lib/site-config'
 
 export default function Hero() {
   const textRef = useRef<HTMLDivElement>(null)
@@ -206,7 +207,7 @@ export default function Hero() {
               Book Inspection →
             </button>
             <a
-              href="https://wa.me/971000000000"
+              href={SITE_WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="box-border flex min-h-[60px] min-w-0 flex-1 items-center justify-center"

@@ -37,7 +37,10 @@ Independent UAE property inspection company: engineering-grade snagging, structu
 - /robots.txt — crawler rules
 - /manifest.webmanifest — PWA metadata (name, theme)
 
-## Contact (public-facing placeholders; verify before publishing)
-Update phone and email in the live Contact section and Footer to match production.
+## Contact (public)
+- Phone: +971 58 593 0042
+- WhatsApp: https://wa.me/message/RPHDWYXEHJZQE1
+- Email: Customercare@Snaggingservices.ae
+- Instagram: https://www.instagram.com/flavus.ae/
 
-Last updated: 2026-03-24
+Last updated: 2026-04-01

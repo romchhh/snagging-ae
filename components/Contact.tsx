@@ -7,6 +7,14 @@ import {
   maskUAEPhone,
   PROPERTY_TYPE_SUGGESTIONS,
 } from '@/lib/input-masks'
+import {
+  SITE_EMAIL,
+  SITE_EMAIL_MAILTO,
+  SITE_INSTAGRAM_URL,
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_TEL,
+  SITE_WHATSAPP_URL,
+} from '@/lib/site-config'
 
 export default function Contact() {
   const ref = useRef<HTMLElement>(null)
@@ -73,8 +81,8 @@ export default function Contact() {
   const contacts = [
     {
       label: 'Phone',
-      value: '+971 00 000 0000',
-      href: 'tel:+971000000000',
+      value: SITE_PHONE_DISPLAY,
+      href: SITE_PHONE_TEL,
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
@@ -83,8 +91,8 @@ export default function Contact() {
     },
     {
       label: 'WhatsApp',
-      value: '+971 00 000 0000',
-      href: 'https://wa.me/971000000000',
+      value: SITE_PHONE_DISPLAY,
+      href: SITE_WHATSAPP_URL,
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
@@ -93,12 +101,23 @@ export default function Contact() {
     },
     {
       label: 'Email',
-      value: 'info@snaggingservices.ae',
-      href: 'mailto:info@snaggingservices.ae',
+      value: SITE_EMAIL,
+      href: SITE_EMAIL_MAILTO,
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
           <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      ),
+    },
+    {
+      label: 'Instagram',
+      value: '@flavus.ae',
+      href: SITE_INSTAGRAM_URL,
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/>
         </svg>
       ),
     },
@@ -158,7 +177,7 @@ export default function Contact() {
               key={c.label}
               href={c.href}
               target={c.href.startsWith('http') ? '_blank' : undefined}
-              rel="noopener noreferrer"
+              rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="contact-strip"
               style={{
                 flex: '1 1 200px',
@@ -240,7 +259,7 @@ export default function Contact() {
                 type="tel"
                 name="phone"
                 autoComplete="tel"
-                placeholder="+971 00 000 0000"
+                placeholder={SITE_PHONE_DISPLAY}
                 value={phone}
                 onChange={(e) => setPhone(maskUAEPhone(e.target.value))}
                 inputMode="tel"
